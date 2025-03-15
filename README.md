@@ -41,7 +41,8 @@ To script used to run the XYZ test to compare the distributions of confidence sc
 
 
 ## How to cite
-If you're using our dataset/model or comparing performances with the ones presented in this work, please cite the following publications:
+If you're using our dataset/model, or comparing performances with the ones presented in this work,
+please cite the two following publications:
 
         [1] Di Noto, T., Marie, G., Tourbier, S., Alemán-Gómez, Y., Esteban, O., Saliou, G., ... & Richiardi, J. (2023). Towards automated brain aneurysm detection in TOF-MRA: open data, weak labels, and anatomical knowledge. Neuroinformatics, 21(1), 21-34.
 
