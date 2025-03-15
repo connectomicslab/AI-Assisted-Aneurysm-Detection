@@ -28,7 +28,8 @@ located in the directory `sensitivity_specificity_analysis_R`
 ### Reading time
 The script used to compare the reading times of the two radiologists with and without the assistance
 of the CAD is called `compare_timing_between_readings.py` and is located inside the directory `reading_time`.
-The files containing the results of the two readings (which include the reading times) are located inside the directory `READINGS` 
+The files containing the results of the two readings (which include the reading times) are located inside
+the directory `READINGS`.
 ### Confidence scores
 All the scripts related to the confidence scores are located in the directory `confidence_score`. 
 To script used to create the barplots that display the confidence scores is `d20240916_confidence_scores_barplots.py`.
