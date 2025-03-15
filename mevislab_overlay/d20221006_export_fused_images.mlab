@@ -1,0 +1,2915 @@
+// MDL v1 utf8
+mevislabVersion = 3.4.2
+network  {
+  watchlist = ""
+}
+module DirectDicomImport {
+  internal  {
+    frame = "365 1157 168 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "503 212 800 412"
+        sizeHint = "800 412"
+        wasOpen = no
+      }
+      window VolumeDetails {
+        geometry = "596 82 848 899"
+        sizeHint = "848 402"
+        wasOpen = no
+      }
+      window Configuration {
+        geometry = "571 410 779 334"
+        sizeHint = "779 334"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "2630 277 856 646"
+        sizeHint = "296 228"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DirectDicomImport
+    tagDumpSize = 1000000
+    dumpPrivateTagValues = FALSE
+    numShownBinaryEntries = 8
+    annotate = FALSE
+    regExLineFilter = ""
+    fullUserSrcPaths = ""
+    fullTargetPath = ""
+    useRelativeCachePaths = FALSE
+    writeSingleVolumeCacheFiles = FALSE
+    autoCreateCachePath = FALSE
+    cacheFileName = DDICacheFile
+    consoleSizeInKiloBytes = 64
+    outVolume = 0
+    preferCacheBeforeImport = FALSE
+    clearAfterImport = FALSE
+    clearSingleFrameCacheAfterImport = TRUE
+    maxTreeCachedMBs = 1000
+    maxTagCachedMBs = 500
+    editDicomCacheSize = FALSE
+    useResultCaching = FALSE
+    suppressedFilesAndSuffixes = ".mlab .db .log .lst .xml .rar .zip .img .exe .ini .inf .jxr .ndpi .svn-base .vmu entries all-wcprops .DDI-SMF-TreeCacheFile.dcm"
+    explicitFileTypes = ".1 .2 .3 .4 .5 .6 .7 .8 .9 .bmp .btf .dm3 .dm4 .cnf .cpi .czi .dat .dzi .gipl .gsa .hdr .jp2 .jpg .jpeg .lsm .mhd .mi .mlimage .nhdr .nii .mca .mrxs .nrrd .pgm .pic .png .pnm .ppm .raw .rd .rek .spe .spr .svs .tif .tiff .txt .uxd .vms .vtk .wsv .xy"
+    inputFileList = ""
+    sortMode = NumVoxels
+    sortUpwards = TRUE
+    idxSortTagValue = ""
+    useNumericTagValueSorting = FALSE
+    thumbNailsExt = 40
+    userColumnTag0 = ""
+    userColumnTag1 = ""
+    userColumnTag2 = ""
+    iconBuildMode = UseMiddleSlice
+    icon = FALSE
+    userTag0 = FALSE
+    userTag1 = FALSE
+    userTag2 = FALSE
+    columnConfig = "# Note: Comments must always be prefixed at line start with a '#'.
+
+# Default setting:
+validImage seriesDescription hasIssues fileType voxelType imgExt numVoxels numSlices numTimePoints numSrcFiles modality patientID patientSex patientsName studyID
+
+#modality studyDate acquisitionTime numSlices spacingBetweenSlices studyDescription seriesDescription acquisitionDate imageComments patientsName patientSex patientsBirthDate patientID referringPhysiciansName admittingDiagnosesDescription
+
+# Available values are:
+#userTag0 userTag1 userTag2 validImage hasIssues importTime fileType voxelType imgExt voxelExtent numVoxels numSlices colorImage numTimePoints numSrcFiles firstOrigFile outFileName inputFilterLabel lossy compressionType humanReadableOrientation accessionNumber acquisitionDate acquisitionMatrix acquisitionNumber acquisitionTime aCR_NEMA_AcquisitionsInSeries aCR_NEMA_ImageOrientation aCR_NEMA_ImagePosition admittingDiagnosesDescription angioFlag bitsAllocated bitsStored bodyPartExamined codeMeaning codeValue columns contentDate contentTime contrastBolusAgent contrastBolusStartTime convolutionKernel currentPatientLocation derivationDescription echoTime echoTrainLength exposure exposureTime flipAngle frameOfReferenceUID gantryAngle gantryAngleTolerance gantryDetectorSlew gantryDetectorTilt gantryRotationDirection highBit imageComments imagedNucleus imageOrientationPatient imagePositionPatient imageType imagingFrequency instanceCreationDate instanceCreationTime instanceNumber institutionAddress institutionName inversionTime kVP largestImagePixelValue magneticFieldStrength manufacturer manufacturersModelName mediaStorageSOPInstanceUID modality mRAcquisitionType nameOfPhysiciansReadingStudy numberOfAverages numberOfFrames numberOfPhaseEncodingSteps numberOfTemporalPositions otherPatientNames patientComments patientID patientOrientation patientsAge percentSampling patientSex patientPosition patientsAddress patientsMothersBirthName patientsName patientsTelephoneNumbers patientsWeight patientsBirthDate performedProcedureStepDescription performedProcedureStepStartDate performedProcedureStepStartTime photometricInterpretation physiciansOfRecord pixelRepresentation pixelSpacing protocolName receiveCoilName reconstructionDiameter referringPhysiciansName repetitionTime requestedProcedureDescription requestingPhysician requestingService rescaleIntercept rescaleSlope rescaleType rows samplesPerPixel sAR scanningSequence scanOptions scheduledProcedureStepDescription sequenceName sequenceVariant seriesDate seriesDescription seriesInstanceUID seriesNumber seriesTime sliceLocation sliceThickness smallestImagePixelValue softwareVersions sOPClassUID sOPInstanceUID spacingBetweenSlices stationName studyDate studyDescription studyID studyInstanceUID studyTime windowCenter windowWidth xRayTubeCurrent "
+    dplCalcMinMax = Automatic
+    dplAnon = FALSE
+    dplVerbose = 0
+    specialProcessors = Off
+    minimumNumFramesInVolume = 1
+    dplConfigString0 = "*(
+  {Element = (0008,0060); Name = Modality;  Sort = 1; Part = 1; },
+  {Element = (0008,0020); Name = StudyDate; Sort = 1; Part = 1; },
+  {Element = (0008,0008); Name = ImageType; Sort = 1; Part = 1; },
+  {Element = (0018,1030); Name = ProtocolName; Sort = 1; Part = 1; },
+  {Element = (0018,0050); Name = SliceThickness; Sort = 1; Part = 1; Tolerance = 0.000005; },
+  {Element = (0018,0080); Name = RepetitionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0082); Name = InversionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0091); Name = EchoTrainLength; Sort = 1; Part = 1; },
+  {Element = (0018,1210); Name = ConvolutionKernel; Sort = 1; Part = 1; },
+  {Element = (0018,1314); Name = FlipAngle; Sort = 1; Part = 1; },
+  {Element = (0018,0015); Name = BodyPartExamined; Sort = 1; Part = 1; },
+  {Element = (0028,0008); Name = NumberOfFrames; Sort = 1; Part = 1; },
+  {Element = (0028,0010); Name = Rows; Sort = 1; Part = 1; },
+  {Element = (0028,0011); Name = Columns; Sort = 1; Part = 1; },
+  {Element = (0020,0037); Name = ImageOrientationPatient; Sort = 1; Part = 1; Tolerance = 0.000005; },
+  {Element = (0018,1004); Name = PlateID; Sort = 1; Part = 1; },
+  {Element = (0018,1000); Name = DeviceSerialNumber; Sort = 1; Part = 1; },
+  {Element = (0028,0004); Name = PhotometricInterpretation; Sort = 1; Part = 1; },
+  {Element = (0028,0100); Name = BitsAllocated; Sort = 1; Part = 1; },
+  {Element = (0028,0102); Name = HighBit; Sort = 1; Part = 1; },
+  {Element = (0028,0103); Name = PixelRepresentation; Sort = 1; Part = 1; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0023); Name = MRAcquisitionType; Sort = 1; Part = 1; },
+  {Element = (0028,0030); Name = PixelSpacing; Sort = 1; Part = 1; Tolerance = 0.00001; },
+  {Element = (0054,0010); Name = EnergyWindowVector; Sort = 1; Part = 1; },
+  {Element = (0054,0030); Name = PhaseVector; Sort = 1; Part = 1; },
+  {Element = (0054,0060); Name = RRIntervalVector; Sort = 1; Part = 1; },
+  {Element = (0054,0050); Name = RotationVector; Sort = 1; Part = 1; },
+  {Element = (0028,1101); Name = RedPaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1102); Name = GreenPaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1103); Name = BluePaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1201); Name = RedPaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0028,1202); Name = GreenPaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0028,1203); Name = BluePaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0020,000e); Name = SeriesInstanceUID; Sort = 1; SortCondition = "Modality = NM & !(FrameIncrementPointer = '(0054,0010)')" Part = 1; PartCondition = "Modality = NM & !(FrameIncrementPointer = '(0054,0010)')";       },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; SortCondition = "Modality = NM & NumberOfFrames > 1";  Part = 1; PartCondition = "Modality = NM & NumberOfFrames > 1";  },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; SortCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX | Modality = RG"; Part = 1; PartCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX | Modality = RG";  },
+  {Element = (0008,1090); Name = ManufacturerModelName; Sort = 1; Part = 1; },
+  {Element = (0008,1010); Name = StationName; Sort = 1; Part = 1; },
+  {Element = (0008,0070); Name = Manufacturer; Sort = 1; Part = 1; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0085); Name = ImagedNucleus; Sort = 1; Part = 1; },
+  {Element = (0018,0087); Name = MagneticFieldStrength; Sort = 1; Part = 1; },
+  {Element = (0018,1020); Name = SoftwareVersion; Sort = 1; Part = 1; },
+  {Element = (0018,5100); Name = PatientPosition; Sort = 1; Part = 1; },
+  {Element = (0062,000b); Name = ReferencedSegmentNumber; Sort = 1; SortCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; Part = 1;  PartCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; },
+  {Element = (0020,000e); Name = SeriesInstanceUID; Sort = 1; SortCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; Part = 1; PartCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; },
+  {Element = (0020,0013); Name = InstanceNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0030); Name = StudyTime; Sort = 1; Part = 0; },
+  {Element = (0020,0011); Name = SeriesNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0021); Name = SeriesDate; Sort = 1; Part = 0; },
+  {Element = (0008,0031); Name = SeriesTime; Sort = 1; Part = 0; },
+  {Element = (0018,0081); Name = EchoTime; Sort = 1; Part = 0; },
+  {Element = (0018,0024); Name = SequenceName; Sort = 1; Part = 0; },
+  {Element = (0020,0012); Name = AcquisitionNumber; Sort = 1; Part = 0; },
+  {Element = (0018,0022); Name = ScanOptions; Sort = 1; Part = 0; },
+  {Element = (0008,0022); Name = AcquisitionDate; Sort = 1; Part = 0; },
+  {Element = (0008,0032); Name = AcquisitionTime; Sort = 1; Part = 0; },
+  {Element = (0008,0023); Name = ContentDate; Sort = 1; Part = 0; },
+  {Element = (0008,0033); Name = ContentTime; Sort = 1; Part = 0; },
+  {Element = (0020,0032); Name = ImagePositionPatient; Sort = 1; Part = 0; },
+  {Element = (0054,0020); Name = DetectorVector; Sort = 1; Part = 0; },
+  {Element = (0054,0100); Name = TimeSliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0070); Name = TimeSlotVector; Sort = 1; Part = 0; },
+  {Element = (0054,0080); Name = SliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0090); Name = AngularViewVector; Sort = 1; Part = 0; },
+  {Element = (0020,9157); Name = DimensionIndexValues; Sort = 1; Part = 0; },
+)
+*"
+    dplConfigString1 = "*(
+  {Element = (0008,0060); Name = Modality;  Sort = 1; Part = 1; },
+  {Element = (0008,0020); Name = StudyDate; Sort = 1; Part = 1; },
+  {Element = (0008,0008); Name = ImageType; Sort = 1; Part = 1; },
+  {Element = (0018,1030); Name = ProtocolName; Sort = 1; Part = 1; },
+  {Element = (0018,0050); Name = SliceThickness; Sort = 1; Part = 1; Tolerance = 0.000005; },
+  {Element = (0018,0080); Name = RepetitionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0082); Name = InversionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0091); Name = EchoTrainLength; Sort = 1; Part = 1; },
+  {Element = (0018,1210); Name = ConvolutionKernel; Sort = 1; Part = 1; },
+  {Element = (0018,1314); Name = FlipAngle; Sort = 1; Part = 1; },
+  {Element = (0018,0015); Name = BodyPartExamined; Sort = 1; Part = 1; },
+  {Element = (0028,0008); Name = NumberOfFrames; Sort = 1; Part = 1; },
+  {Element = (0028,0010); Name = Rows; Sort = 1; Part = 1; },
+  {Element = (0028,0011); Name = Columns; Sort = 1; Part = 1; },
+  {Element = (0020,0037); Name = ImageOrientationPatient; Sort = 1; Part = 1; Tolerance = 0.000005; },
+  {Element = (0018,1004); Name = PlateID; Sort = 1; Part = 1; },
+  {Element = (0018,1000); Name = DeviceSerialNumber; Sort = 1; Part = 1; },
+  {Element = (0028,0004); Name = PhotometricInterpretation; Sort = 1; Part = 1; },
+  {Element = (0028,0100); Name = BitsAllocated; Sort = 1; Part = 1; },
+  {Element = (0028,0102); Name = HighBit; Sort = 1; Part = 1; },
+  {Element = (0028,0103); Name = PixelRepresentation; Sort = 1; Part = 1; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0023); Name = MRAcquisitionType; Sort = 1; Part = 1; },
+  {Element = (0028,0030); Name = PixelSpacing; Sort = 1; Part = 1; Tolerance = 0.00001; },
+  {Element = (0054,0010); Name = EnergyWindowVector; Sort = 1; Part = 1; },
+  {Element = (0054,0030); Name = PhaseVector; Sort = 1; Part = 1; },
+  {Element = (0054,0060); Name = RRIntervalVector; Sort = 1; Part = 1; },
+  {Element = (0054,0050); Name = RotationVector; Sort = 1; Part = 1; },
+  {Element = (0028,1101); Name = RedPaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1102); Name = GreenPaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1103); Name = BluePaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1201); Name = RedPaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0028,1202); Name = GreenPaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0028,1203); Name = BluePaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0020,000e); Name = SeriesInstanceUID; Sort = 1; SortCondition = "Modality = NM & !(FrameIncrementPointer = '(0054,0010)')" Part = 1; PartCondition = "Modality = NM & !(FrameIncrementPointer = '(0054,0010)')";       },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; SortCondition = "Modality = NM & NumberOfFrames > 1";  Part = 1; PartCondition = "Modality = NM & NumberOfFrames > 1";  },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; SortCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX | Modality = RG"; Part = 1; PartCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX | Modality = RG";  },
+  {Element = (0008,1090); Name = ManufacturerModelName; Sort = 1; Part = 1; },
+  {Element = (0008,1010); Name = StationName; Sort = 1; Part = 1; },
+  {Element = (0008,0070); Name = Manufacturer; Sort = 1; Part = 1; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0085); Name = ImagedNucleus; Sort = 1; Part = 1; },
+  {Element = (0018,0087); Name = MagneticFieldStrength; Sort = 1; Part = 1; },
+  {Element = (0018,1020); Name = SoftwareVersion; Sort = 1; Part = 1; },
+  {Element = (0018,5100); Name = PatientPosition; Sort = 1; Part = 1; },
+  {Element = (0062,000b); Name = ReferencedSegmentNumber; Sort = 1; SortCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; Part = 1;  PartCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; },
+  {Element = (0020,000e); Name = SeriesInstanceUID; Sort = 1; SortCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; Part = 1; PartCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; },
+  {Element = (0020,0013); Name = InstanceNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0030); Name = StudyTime; Sort = 1; Part = 0; },
+  {Element = (0020,0011); Name = SeriesNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0021); Name = SeriesDate; Sort = 1; Part = 0; },
+  {Element = (0008,0031); Name = SeriesTime; Sort = 1; Part = 0; },
+  {Element = (0018,0081); Name = EchoTime; Sort = 1; Part = 0; },
+  {Element = (0018,0024); Name = SequenceName; Sort = 1; Part = 0; },
+  {Element = (0020,0012); Name = AcquisitionNumber; Sort = 1; Part = 0; },
+  {Element = (0018,0022); Name = ScanOptions; Sort = 1; Part = 0; },
+  {Element = (0008,0022); Name = AcquisitionDate; Sort = 1; Part = 0; },
+  {Element = (0008,0032); Name = AcquisitionTime; Sort = 1; Part = 0; },
+  {Element = (0008,0023); Name = ContentDate; Sort = 1; Part = 0; },
+  {Element = (0008,0033); Name = ContentTime; Sort = 1; Part = 0; },
+  {Element = (0020,0032); Name = ImagePositionPatient; Sort = 1; Part = 0; },
+  {Element = (0054,0020); Name = DetectorVector; Sort = 1; Part = 0; },
+  {Element = (0054,0100); Name = TimeSliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0070); Name = TimeSlotVector; Sort = 1; Part = 0; },
+  {Element = (0054,0080); Name = SliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0090); Name = AngularViewVector; Sort = 1; Part = 0; },
+  {Element = (0020,9157); Name = DimensionIndexValues; Sort = 1; Part = 0; },
+)
+*"
+    dplConfigString2 = "*(
+  {Element = (0008,0060); Name = Modality;  Sort = 1; Part = 1; },
+  {Element = (0008,0020); Name = StudyDate; Sort = 1; Part = 1; },
+  {Element = (0008,0008); Name = ImageType; Sort = 1; Part = 1; },
+  {Element = (0018,1030); Name = ProtocolName; Sort = 1; Part = 1; },
+  {Element = (0018,0050); Name = SliceThickness; Sort = 1; Part = 1; Tolerance = 0.000005; },
+  {Element = (0018,0080); Name = RepetitionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0082); Name = InversionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0091); Name = EchoTrainLength; Sort = 1; Part = 1; },
+  {Element = (0018,1210); Name = ConvolutionKernel; Sort = 1; Part = 1; },
+  {Element = (0018,1314); Name = FlipAngle; Sort = 1; Part = 1; },
+  {Element = (0018,0015); Name = BodyPartExamined; Sort = 1; Part = 1; },
+  {Element = (0028,0008); Name = NumberOfFrames; Sort = 1; Part = 1; },
+  {Element = (0028,0010); Name = Rows; Sort = 1; Part = 1; },
+  {Element = (0028,0011); Name = Columns; Sort = 1; Part = 1; },
+  {Element = (0020,0037); Name = ImageOrientationPatient; Sort = 1; Part = 1; Tolerance = 0.000005; },
+  {Element = (0018,1004); Name = PlateID; Sort = 1; Part = 1; },
+  {Element = (0018,1000); Name = DeviceSerialNumber; Sort = 1; Part = 1; },
+  {Element = (0028,0004); Name = PhotometricInterpretation; Sort = 1; Part = 1; },
+  {Element = (0028,0100); Name = BitsAllocated; Sort = 1; Part = 1; },
+  {Element = (0028,0102); Name = HighBit; Sort = 1; Part = 1; },
+  {Element = (0028,0103); Name = PixelRepresentation; Sort = 1; Part = 1; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0023); Name = MRAcquisitionType; Sort = 1; Part = 1; },
+  {Element = (0028,0030); Name = PixelSpacing; Sort = 1; Part = 1; Tolerance = 0.00001; },
+  {Element = (0054,0010); Name = EnergyWindowVector; Sort = 1; Part = 1; },
+  {Element = (0054,0030); Name = PhaseVector; Sort = 1; Part = 1; },
+  {Element = (0054,0060); Name = RRIntervalVector; Sort = 1; Part = 1; },
+  {Element = (0054,0050); Name = RotationVector; Sort = 1; Part = 1; },
+  {Element = (0028,1101); Name = RedPaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1102); Name = GreenPaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1103); Name = BluePaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1201); Name = RedPaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0028,1202); Name = GreenPaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0028,1203); Name = BluePaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0020,000e); Name = SeriesInstanceUID; Sort = 1; SortCondition = "Modality = NM & !(FrameIncrementPointer = '(0054,0010)')" Part = 1; PartCondition = "Modality = NM & !(FrameIncrementPointer = '(0054,0010)')";       },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; SortCondition = "Modality = NM & NumberOfFrames > 1";  Part = 1; PartCondition = "Modality = NM & NumberOfFrames > 1";  },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; SortCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX | Modality = RG"; Part = 1; PartCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX | Modality = RG";  },
+  {Element = (0008,1090); Name = ManufacturerModelName; Sort = 1; Part = 1; },
+  {Element = (0008,1010); Name = StationName; Sort = 1; Part = 1; },
+  {Element = (0008,0070); Name = Manufacturer; Sort = 1; Part = 1; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0085); Name = ImagedNucleus; Sort = 1; Part = 1; },
+  {Element = (0018,0087); Name = MagneticFieldStrength; Sort = 1; Part = 1; },
+  {Element = (0018,1020); Name = SoftwareVersion; Sort = 1; Part = 1; },
+  {Element = (0018,5100); Name = PatientPosition; Sort = 1; Part = 1; },
+  {Element = (0062,000b); Name = ReferencedSegmentNumber; Sort = 1; SortCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; Part = 1;  PartCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; },
+  {Element = (0020,000e); Name = SeriesInstanceUID; Sort = 1; SortCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; Part = 1; PartCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; },
+  {Element = (0020,0013); Name = InstanceNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0030); Name = StudyTime; Sort = 1; Part = 0; },
+  {Element = (0020,0011); Name = SeriesNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0021); Name = SeriesDate; Sort = 1; Part = 0; },
+  {Element = (0008,0031); Name = SeriesTime; Sort = 1; Part = 0; },
+  {Element = (0018,0081); Name = EchoTime; Sort = 1; Part = 0; },
+  {Element = (0018,0024); Name = SequenceName; Sort = 1; Part = 0; },
+  {Element = (0020,0012); Name = AcquisitionNumber; Sort = 1; Part = 0; },
+  {Element = (0018,0022); Name = ScanOptions; Sort = 1; Part = 0; },
+  {Element = (0008,0022); Name = AcquisitionDate; Sort = 1; Part = 0; },
+  {Element = (0008,0032); Name = AcquisitionTime; Sort = 1; Part = 0; },
+  {Element = (0008,0023); Name = ContentDate; Sort = 1; Part = 0; },
+  {Element = (0008,0033); Name = ContentTime; Sort = 1; Part = 0; },
+  {Element = (0020,0032); Name = ImagePositionPatient; Sort = 1; Part = 0; },
+  {Element = (0054,0020); Name = DetectorVector; Sort = 1; Part = 0; },
+  {Element = (0054,0100); Name = TimeSliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0070); Name = TimeSlotVector; Sort = 1; Part = 0; },
+  {Element = (0054,0080); Name = SliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0090); Name = AngularViewVector; Sort = 1; Part = 0; },
+  {Element = (0020,9157); Name = DimensionIndexValues; Sort = 1; Part = 0; },
+)
+*"
+    dplConfigString3 = "*(
+  {Element = (0008,0060); Name = Modality;  Sort = 1; Part = 1; },
+  {Element = (0008,0020); Name = StudyDate; Sort = 1; Part = 1; },
+  {Element = (0008,0008); Name = ImageType; Sort = 1; Part = 1; },
+  {Element = (0018,1030); Name = ProtocolName; Sort = 1; Part = 1; },
+  {Element = (0018,0050); Name = SliceThickness; Sort = 1; Part = 1; Tolerance = 0.000005; },
+  {Element = (0018,0080); Name = RepetitionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0082); Name = InversionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0091); Name = EchoTrainLength; Sort = 1; Part = 1; },
+  {Element = (0018,1210); Name = ConvolutionKernel; Sort = 1; Part = 1; },
+  {Element = (0018,1314); Name = FlipAngle; Sort = 1; Part = 1; },
+  {Element = (0018,0015); Name = BodyPartExamined; Sort = 1; Part = 1; },
+  {Element = (0028,0008); Name = NumberOfFrames; Sort = 1; Part = 1; },
+  {Element = (0028,0010); Name = Rows; Sort = 1; Part = 1; },
+  {Element = (0028,0011); Name = Columns; Sort = 1; Part = 1; },
+  {Element = (0020,0037); Name = ImageOrientationPatient; Sort = 1; Part = 1; Tolerance = 0.000005; },
+  {Element = (0018,1004); Name = PlateID; Sort = 1; Part = 1; },
+  {Element = (0018,1000); Name = DeviceSerialNumber; Sort = 1; Part = 1; },
+  {Element = (0028,0004); Name = PhotometricInterpretation; Sort = 1; Part = 1; },
+  {Element = (0028,0100); Name = BitsAllocated; Sort = 1; Part = 1; },
+  {Element = (0028,0102); Name = HighBit; Sort = 1; Part = 1; },
+  {Element = (0028,0103); Name = PixelRepresentation; Sort = 1; Part = 1; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0023); Name = MRAcquisitionType; Sort = 1; Part = 1; },
+  {Element = (0028,0030); Name = PixelSpacing; Sort = 1; Part = 1; Tolerance = 0.00001; },
+  {Element = (0054,0010); Name = EnergyWindowVector; Sort = 1; Part = 1; },
+  {Element = (0054,0030); Name = PhaseVector; Sort = 1; Part = 1; },
+  {Element = (0054,0060); Name = RRIntervalVector; Sort = 1; Part = 1; },
+  {Element = (0054,0050); Name = RotationVector; Sort = 1; Part = 1; },
+  {Element = (0028,1101); Name = RedPaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1102); Name = GreenPaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1103); Name = BluePaletteColorLookupTableDescriptor; Sort = 1; Part = 1; },
+  {Element = (0028,1201); Name = RedPaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0028,1202); Name = GreenPaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0028,1203); Name = BluePaletteColorLookupTableData; Sort = 1; Part = 1; },
+  {Element = (0020,000e); Name = SeriesInstanceUID; Sort = 1; SortCondition = "Modality = NM & !(FrameIncrementPointer = '(0054,0010)')" Part = 1; PartCondition = "Modality = NM & !(FrameIncrementPointer = '(0054,0010)')";       },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; SortCondition = "Modality = NM & NumberOfFrames > 1";  Part = 1; PartCondition = "Modality = NM & NumberOfFrames > 1";  },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; SortCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX | Modality = RG"; Part = 1; PartCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX | Modality = RG";  },
+  {Element = (0008,1090); Name = ManufacturerModelName; Sort = 1; Part = 1; },
+  {Element = (0008,1010); Name = StationName; Sort = 1; Part = 1; },
+  {Element = (0008,0070); Name = Manufacturer; Sort = 1; Part = 1; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0085); Name = ImagedNucleus; Sort = 1; Part = 1; },
+  {Element = (0018,0087); Name = MagneticFieldStrength; Sort = 1; Part = 1; },
+  {Element = (0018,1020); Name = SoftwareVersion; Sort = 1; Part = 1; },
+  {Element = (0018,5100); Name = PatientPosition; Sort = 1; Part = 1; },
+  {Element = (0062,000b); Name = ReferencedSegmentNumber; Sort = 1; SortCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; Part = 1;  PartCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; },
+  {Element = (0020,000e); Name = SeriesInstanceUID; Sort = 1; SortCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; Part = 1; PartCondition = "SOPClassUID = 1.2.840.10008.5.1.4.1.1.66.4"; },
+  {Element = (0020,0013); Name = InstanceNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0030); Name = StudyTime; Sort = 1; Part = 0; },
+  {Element = (0020,0011); Name = SeriesNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0021); Name = SeriesDate; Sort = 1; Part = 0; },
+  {Element = (0008,0031); Name = SeriesTime; Sort = 1; Part = 0; },
+  {Element = (0018,0081); Name = EchoTime; Sort = 1; Part = 0; },
+  {Element = (0018,0024); Name = SequenceName; Sort = 1; Part = 0; },
+  {Element = (0020,0012); Name = AcquisitionNumber; Sort = 1; Part = 0; },
+  {Element = (0018,0022); Name = ScanOptions; Sort = 1; Part = 0; },
+  {Element = (0008,0022); Name = AcquisitionDate; Sort = 1; Part = 0; },
+  {Element = (0008,0032); Name = AcquisitionTime; Sort = 1; Part = 0; },
+  {Element = (0008,0023); Name = ContentDate; Sort = 1; Part = 0; },
+  {Element = (0008,0033); Name = ContentTime; Sort = 1; Part = 0; },
+  {Element = (0020,0032); Name = ImagePositionPatient; Sort = 1; Part = 0; },
+  {Element = (0054,0020); Name = DetectorVector; Sort = 1; Part = 0; },
+  {Element = (0054,0100); Name = TimeSliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0070); Name = TimeSlotVector; Sort = 1; Part = 0; },
+  {Element = (0054,0080); Name = SliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0090); Name = AngularViewVector; Sort = 1; Part = 0; },
+  {Element = (0020,9157); Name = DimensionIndexValues; Sort = 1; Part = 0; },
+)
+*"
+    dplUsedConfig = DefaultConfig
+    relativeDistanceTolerance = 0.25
+    absoluteDistanceTolerance = 0.02
+    positionToleranceMM = 0.0999
+    seriesBasedPreprocessingCondition = FALSE
+    force2DPlusTCondition = "Modality == XA | Modality == US | Modality == RF"
+    logPartingAndSortingInformation = FALSE
+    dplScanRecursively = TRUE
+    decomposeMultiFrameFiles = TRUE
+    copyFullFunctionalGroupSequences = TRUE
+    removePrivateMFSQTag = FALSE
+    forceOrthogonalWorldMatrix = FALSE
+    decomposeTo3DVolumes = FALSE
+    allowMixedPixelTypes = FALSE
+    copyPrivateTopLevelSourceTags = TRUE
+    dplHardOverwriteTagOn0 = FALSE
+    dplHardOverwriteTagId0 = ""
+    dplHardOverwriteTagStr0 = ""
+    dplHardOverwriteTagOn1 = FALSE
+    dplHardOverwriteTagId1 = ""
+    dplHardOverwriteTagStr1 = ""
+    dplHardOverwriteTagOn2 = FALSE
+    dplHardOverwriteTagId2 = ""
+    dplHardOverwriteTagStr2 = ""
+    dplHardOverwriteTagOn3 = FALSE
+    dplHardOverwriteTagId3 = ""
+    dplHardOverwriteTagStr3 = ""
+    dplAllowSortingAccordingToDimensionIndexValues = Auto
+    dplWorkaroundValueForImageOrientationPatientTag = ""
+    composeOtherFilesMode = Single
+    silentTrialFileTypes = ".dat .raw .txt"
+    source = C:/varie_phd_tommy/aneurysm_project/mevislab/in_mevislab/12_in_mevislab_Feb_01_2023/sub-732/ses-20121012/00014-TOF_3D_multi_slab
+    guiCachePath = ""
+  }
+}
+module View2D {
+  internal  {
+    frame = "741 13 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "760 377 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "710 277 720 600"
+        sizeHint = "260 228"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    inventorOutputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_SCREEN
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 103.28125
+    lutWidth = 256.293762207031
+    annotationOn = FALSE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "985 453 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "760 377 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup1
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "1053 1213 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "897 135 402 467"
+        sizeHint = "402 467"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = "unsigned int16"
+    autoDetermineDataType = TRUE
+    correctSubVoxelShift = TRUE
+    fileDimension = 3
+    info = "Loading okay."
+    numDims = 3
+    fileType = TypeNotApplicable
+    componentType = "unsigned int16"
+    pixelType = SCALAR
+    loaderType = NiftiImageIO
+    outputMetaDataStr = "ITK_FileNotes : 
+aux_file : 
+bitpix : 16
+cal_max : 0
+cal_min : 0
+datatype : 512
+descrip : 
+dim[0] : 3
+dim[1] : 350
+dim[2] : 448
+dim[3] : 144
+dim[4] : 1
+dim[5] : 1
+dim[6] : 1
+dim[7] : 1
+dim_info : 
+intent_code : 0
+intent_name : 
+intent_p1 : 0
+intent_p2 : 0
+intent_p3 : 0
+pixdim[0] : 1
+pixdim[1] : 0.46875
+pixdim[2] : 0.46875
+pixdim[3] : 0.700004
+pixdim[4] : 1
+pixdim[5] : 1
+pixdim[6] : 1
+pixdim[7] : 1
+qform_code : 0
+qoffset_x : 76.2793
+qoffset_y : 100.517
+qoffset_z : -71.4043
+quatern_b : -0.019081
+quatern_c : -0.000864911
+quatern_d : -0.999708
+scl_inter : 0
+scl_slope : 1
+sform_code : 2
+slice_code : 
+slice_duration : 0
+slice_end : 0
+slice_start : 0
+srow_x : -0.468203 0.0138959 0.0266879 76.2793
+srow_y : -0.013865 -0.468544 0.00160616 100.517
+srow_z : 0.0178953 0.000545686 0.699493 -71.4043
+toffset : 0
+vox_offset : 352
+xyzt_units : 
+"
+    suppressErrorPosting = FALSE
+    unresolvedFileName = C:/varie_phd_tommy/aneurysm_project/mevislab/in_mevislab/12_in_mevislab_Feb_01_2023/sub-732/ses-20121012/result_reoriented_for_dcm.nii.gz
+  }
+}
+module OffscreenRenderer {
+  internal  {
+    frame = "613 -147 168 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "795 365 359 424"
+        sizeHint = "330 424"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OffscreenRenderer
+    transparencyType = SORTED_OBJECT_BLEND
+    imageType = RGB
+    bufferType = AUTO
+    stencilBuffer = FALSE
+    size = "350 448"
+    pixelScale = 1
+    bgColor = "0 0 0"
+    enableMultiSampling = FALSE
+    multiSampling = 16
+  }
+}
+module RunPythonScript {
+  internal  {
+    frame = "1581 -263 216 64"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "957 108 914 828"
+        sizeHint = "746 321"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OLD_OLD_RunPythonScript
+    in0 = ""
+    in1 = ""
+    in2 = ""
+    in3 = ""
+    in4 = ""
+    in5 = ""
+    in6 = ""
+    in7 = ""
+    in8 = ""
+    in9 = ""
+    inComment0 = in0
+    inComment1 = in1
+    inComment2 = in2
+    inComment3 = in3
+    inComment4 = in4
+    inComment5 = in5
+    inComment6 = in6
+    inComment7 = in7
+    inComment8 = in8
+    inComment9 = in9
+    autoApply0 = TRUE
+    autoApply1 = TRUE
+    autoApply2 = TRUE
+    autoApply3 = TRUE
+    autoApply4 = TRUE
+    autoApply5 = TRUE
+    autoApply6 = TRUE
+    autoApply7 = TRUE
+    autoApply8 = TRUE
+    autoApply9 = TRUE
+    out0 = ""
+    out1 = ""
+    out2 = ""
+    out3 = ""
+    out4 = ""
+    out5 = ""
+    out6 = ""
+    out7 = ""
+    out8 = ""
+    out9 = ""
+    outComment0 = out0
+    outComment1 = out1
+    outComment2 = out2
+    outComment3 = out3
+    outComment4 = out4
+    outComment5 = out5
+    outComment6 = out6
+    outComment7 = out7
+    outComment8 = out8
+    outComment9 = out9
+    initCode = "from mevis import MLAB
+# For backward compatibility, set up CTX as alias for ctx
+CTX = ctx # ctx is the network's context, not RunPythonScript's"
+    wakeUpCode = ""
+    code = "*import numpy as np
+import csv
+import os
+
+input_dicom_dir_path = "C:/Users/tommy/OneDrive/Documenti/PhD_Mixed_Stuff/Mevis_Lab_Trials/trials_Jul_12_2022/trial_mask_conversion_to_lps_for_dcm_Jul_11_2022/sub-035/ses-20101015/0008-TOF3dtrawe"
+segmentation_file_path = "C:/Users/tommy/OneDrive/Documenti/PhD_Mixed_Stuff/Mevis_Lab_Trials/trials_Jul_12_2022/chuv_no_pretrain_adam_anatinf_slid_wind_Jul_11_2022/fold_1_inference_Jul_11_2022/sub-035/ses-20101015"
+output_dir_path = "C:/Users/tommy/OneDrive/Desktop/mevis_lab_nii2dcm/sub-148/out_May_04_2022"
+probabilities_csv_file_path = "C:/Users/tommy/OneDrive/Desktop/mevis_lab_nii2dcm/sub-148/out_May_04_2022/probs.csv"
+
+lst_subjs = os.listdir(input_dicom_dir_path)
+for sub_dir in lst_subjs:
+
+    sub_input_dicom_dir_path = f"C:/Users/tommy/OneDrive/Desktop/mevis_lab_nii2dcm/{sub_dir}/0011-TOF3dtrawe"
+    
+    # label_num,coordX,coordY,coordZ,prob,num_slices
+    # x,x,x,x,x,x
+    dict_aneurysms = dict()
+    with open(probabilities_csv_file_path, 'r') as fp:
+        csv_reader = csv.DictReader(fp, delimiter=',')
+        for row in csv_reader:
+            dict_aneurysms[row['label_num']] = {'coordX': row['coordX'], 'coordY': row['coordY'], 'coordZ': row['coordZ'],}
+
+
+    lst_colors = ["FF0000",  # red
+                  "00FF00",  # green
+                  "0000FF",  # blue
+                  "FFFF00",  # yellow
+                  "00FF00"]  # cyan
+
+    # Load readers
+    ctx.field("DirectDicomImport.source").value = input_dicom_dir_path
+    ctx.field("DirectDicomImport.dplImport").touch()
+    ctx.field("itkImageFileReader.unresolvedFileName").value = segmentation_file_path
+    ctx.field("itkImageFileReader.open").touch()
+
+    num_labels = ctx.field("MinMaxScan.trueMaxValue").value
+    for i in range(1,num_labels+1):
+
+        # Viz of contours
+        ctx.field(f"ContourLabel_{i}.triggerRemoveAll").touch()
+        ctx.field(f"ContourLabel_{i}.triggerAddContour").touch()
+        ctx.field(f"ContourLabel_{i}.density").value = 1
+        ctx.field(f"ContourLabel_{i}.interactiveDensity").value = False
+        ctx.field(f"ContourLabel_{i}.contour_color").value = lst_colors[i-1]
+
+        #Viz of label
+        ctx.field(f"Label_{i}.color").value = lst_colors[i-1]
+
+        coordX = dict_aneurysms[i]['coordX']
+        coordY = dict_aneurysms[i]['coordY']
+        coordZ = dict_aneurysms[i]['coordZ']
+
+        # prob 
+        # Label_1.text
+
+        ctx.field("WorldVoxelConvert.voxelPos").value = (int(coordX), int(coordY), int(coordZ))
+        ctx.field(f"Label_{i}.worldPosition").value = ctx.field("WorldVoxelConvert.worldPos").value
+
+
+    # Generating RGB image
+    ctx.field("SubImage.fullSize").touch()
+    ctx.field("SubImage.sz").value=1
+
+    numSlices = ctx.field("Info.sizeZ").value
+    ctx.field("OffscreenRenderer.size").value = [ctx.field("Info.sizeX").value, ctx.field("Info.sizeY").value]
+    ctx.field("OffscreenRenderer.pixelScale").value = 1
+
+    voxelToWorldMat = ctx.field("Info.worldMatrix").value
+    voxelToWorldMat  = np.array(voxelToWorldMat)
+
+    # Creates a new UID for new series
+    ctx.field("DicomUIDGenerator.create").touch()
+
+    i = 0
+    print("Start saving...")
+    for valInteger in range(numSlices):  # loop over slices
+      
+        # Extracts slice
+        ctx.field("SubImage.z").value = valInteger
+      
+        # Reads orientation properties of original slice
+        worldPos = np.dot(voxelToWorldMat, (0,0,valInteger,1))
+        voxelToWorldMatSlice = voxelToWorldMat.copy()
+        voxelToWorldMatSlice[0][3] = worldPos[0]
+        voxelToWorldMatSlice[1][3] = worldPos[1]
+        voxelToWorldMatSlice[2][3] = worldPos[2]
+        ctx.field("ImagePropertyConvert.pageSizeX").value = ctx.field("Info.sizeX").value
+        ctx.field("ImagePropertyConvert.pageSizeY").value = ctx.field("Info.sizeY").value
+        ctx.field("ImagePropertyConvert.pageSizeZ").value = ctx.field("Info.sizeZ").value
+        
+        ctx.field("ImagePropertyConvert.worldMatrix").value = voxelToWorldMatSlice
+        
+        # Generates fused image
+        ctx.field("OffscreenRenderer.update").touch()
+        MLAB.processEvents()
+        MLAB.processInventorQueue()
+        
+        # ---------- Change DICOM tags of output image
+        # ImageType
+        ctx.field("DicomTagModify.tagValue0").value = "SECONDARY\\\\DERIVED\\\\FUSED"
+        # SeriesInstanceUID
+        ctx.field("DicomTagModify.tagValue1").value = ctx.field("DicomUIDGenerator.UID").value
+        # SeriesNumber
+        ctx.field("DicomTagModify.tagValue2").value = "15000"
+        # SeriesDescription
+        ctx.field("DicomTagModify.tagValue3").value = "ResearchOnly_FusedMap"
+        # ImageComments
+        ctx.field("DicomTagModify.tagValue4").value = "Not for clinical use"
+        
+        # Saves fused image to dicom
+        ctx.field("ImageSave.filename").value = f"{output_dir_path}/slice_{i}.dcm"
+        ctx.field("ImageSave.save").touch()
+        MLAB.processEvents()
+        MLAB.processInventorQueue()
+        
+        # print every 20 slices
+        if i%20==0:
+            print(f"{i} saved")
+        i = i + 1
+    print("Save completed!")
+*"
+    finalizeCode = ""
+    showFields = FALSE
+    showInitCode = FALSE
+    showWakeUpCode = FALSE
+    showCode = TRUE
+    showFinalizeCode = FALSE
+    showConsole = FALSE
+  }
+}
+module Info {
+  internal  {
+    frame = "281 297 128 80"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "619 367 682 421"
+        sizeHint = "682 421"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+  }
+}
+module SubImage {
+  internal  {
+    frame = "549 213 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1198 146 487 613"
+        sizeHint = "487 613"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SubImage
+    boxInput = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    autoApplyBox = FALSE
+    correctForNegativeSubImageExtents = FALSE
+    enableBoxClamping = FALSE
+    x = 0
+    sx = 350
+    modifyX = TRUE
+    y = 0
+    sy = 448
+    modifyY = TRUE
+    z = 143
+    sz = 1
+    modifyZ = TRUE
+    c = 0
+    sc = 1
+    modifyC = FALSE
+    t = 0
+    st = 1
+    modifyT = TRUE
+    u = 0
+    su = 1
+    modifyU = FALSE
+    fillValue = 0
+    mode = VoxelStartSize
+    autoApply = TRUE
+  }
+}
+module ImageSave {
+  internal  {
+    frame = "665 -595 96 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "714 299 508 557"
+        sizeHint = "492 557"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageSave
+    taskVerboseLogging = FALSE
+    filename = "C:/varie_phd_tommy/aneurysm_project/mevislab/out_mevislab/12_out_mevislab_Feb_01_2023\\sub-732\\ses-20121012\\TOF_fused/slice_143.dcm"
+    addFileExtension = TRUE
+    format = DICOM
+    comment = ""
+    allowOverwrite = TRUE
+    autoFilename = FALSE
+    sourceName = ""
+    postfix = .result1
+    dicomNameUsed = TRUE
+    dicomMetaHeader = FALSE
+    dicomDerived = FALSE
+    dicomDerivedImageType = "OTHER\\MEVISLAB"
+    dicomDiscardTags = FrameSpecific
+    dicomStoreTimeInfo = None
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = None
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    tiffLinearRGB = FALSE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+module ImagePropertyConvert {
+  internal  {
+    frame = "613 -495 152 80"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "1256 195 410 721"
+        sizeHint = "384 721"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImagePropertyConvert
+    changeDimensionInfo = FALSE
+    cDimInfo = ""
+    tDimInfo = ""
+    uDimInfo = ""
+    a00 = 0.468203037267474
+    a01 = -0.0138959414249063
+    a02 = -0.026687718635003
+    a03 = -80.3094972279292
+    a10 = 0.0138649975568297
+    a11 = 0.468543666629834
+    a12 = -0.00160615194999991
+    a13 = -100.987567875388
+    a20 = 0.0178952573678344
+    a21 = 0.000545685795056253
+    a22 = 0.699489253399008
+    a23 = 28.2637117145422
+    a30 = 0
+    a31 = 0
+    a32 = 0
+    a33 = 1
+    worldMatrix = "0.468203037267474 -0.0138959414249063 -0.026687718635003 -80.3094972279292
+0.0138649975568297 0.468543666629834 -0.00160615194999991 -100.987567875388
+0.0178952573678344 0.000545685795056253 0.699489253399008 28.2637117145422
+0 0 0 1"
+    changeDatatype = FALSE
+    datatype = "unsigned int8"
+    changePageSize = TRUE
+    pageSizeX = 350
+    pageSizeY = 448
+    pageSizeZ = 144
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+    changeMinGrayValue = FALSE
+    minGrayValue = 0
+    changeMaxGrayValue = FALSE
+    maxGrayValue = 1
+    changeWorldMatrix = TRUE
+    voxelSizeX = 0.46875
+    voxelSizeY = 0.46875
+    voxelSizeZ = 0.700000021193378
+    autoApply = TRUE
+  }
+}
+module DicomUIDGenerator {
+  internal  {
+    frame = "817 -515 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "738 249 593 97"
+        sizeHint = "167 97"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomUIDGenerator
+  }
+}
+module DicomTagModify {
+  internal  {
+    frame = "597 -363 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "54 182 893 552"
+        sizeHint = "635 552"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "2030 298 826 600"
+        sizeHint = "260 228"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify
+    tagName0 = ImageType
+    tagValue0 = "DERIVED\\SECONDARY\\FUSED"
+    removeTag0 = FALSE
+    tagVR0 = CS
+    stdTagVR0 = TRUE
+    tagName1 = SeriesInstanceUID
+    tagValue1 = 1.3.6.1.4.1.34261.102135027985008.9492.1675337230.0
+    removeTag1 = FALSE
+    tagVR1 = UI
+    stdTagVR1 = TRUE
+    tagName2 = SeriesNumber
+    tagValue2 = 15000
+    removeTag2 = FALSE
+    tagVR2 = IS
+    stdTagVR2 = TRUE
+    tagName3 = SeriesDescription
+    tagValue3 = ResearchOnly_FusedMap
+    removeTag3 = FALSE
+    tagVR3 = LO
+    stdTagVR3 = TRUE
+    tagName4 = ImageComments
+    tagValue4 = "Not for clinical use"
+    removeTag4 = FALSE
+    tagVR4 = LT
+    stdTagVR4 = TRUE
+    tagName5 = StudyInstanceUID
+    tagValue5 = 1.3.6.1.4.1.34261.102135027985008.12824.1664444372.1
+    removeTag5 = FALSE
+    tagVR5 = UI
+    stdTagVR5 = TRUE
+    discardSource = None
+    useTagsString = FALSE
+    modifyTagsString = ""
+    removeTagsString = ""
+    synchronizeTagsString = ""
+    trimSpaces = TRUE
+    autoApply = TRUE
+    updateMode = AutoUpdate
+  }
+}
+module DicomFrameSelect {
+  internal  {
+    frame = "341 157 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "766 451 388 253"
+        sizeHint = "388 253"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomFrameSelect
+    selectTagScope = SharedAndSpecificTags
+    zPos = 143
+    tPos = 0
+    uPos = 0
+    filterMultiFrameInformation = FALSE
+  }
+}
+module GetDicomTreeFromImage {
+  internal  {
+    frame = "321 45 176 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "2694 563 373 29"
+        sizeHint = "373 29"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GetDicomTreeFromImage
+  }
+}
+module SetDicomTreeOnImage {
+  internal  {
+    frame = "553 -283 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "2668 563 425 29"
+        sizeHint = "425 29"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SetDicomTreeOnImage
+  }
+}
+module View2D {
+  internal  {
+    frame = "93 333 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "348 361 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D1
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 72
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 103.28125
+    lutWidth = 256.293762207031
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+  }
+}
+module View2D {
+  internal  {
+    frame = "901 -91 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "948 175 640 534"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+      window Settings {
+        geometry = "803 281 342 593"
+        sizeHint = "315 593"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "710 277 500 600"
+        sizeHint = "260 228"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D3
+    inventorInputOn = TRUE
+    inventorOutputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 72
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_ZT
+    cineDirection = CINE_FORWARD
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineAlwaysReset = TRUE
+    snapToCenter = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1.9000002
+    sliceZoomSynced = 1.9000002
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "169.140365600586 201.543853759766"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
+    lutCenter = 103.28125
+    lutWidth = 256.293762207031
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = FALSE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
+    maxPrecision = 4
+    enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
+  }
+}
+module SoView2DLabel {
+  internal  {
+    frame = "909 609 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1147 105 691 438"
+        sizeHint = "483 438"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Label_1
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = FALSE
+    fixZOn = TRUE
+    color = "1 0 0"
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    cursorShape = UNDEFINED_CURSOR
+    text = 21%
+    viewerId = ""
+    textPositioning = WORLD_COORDINATES
+    worldPosition = "-8.19036483764648 -32.4412956237793 -14.7104873657227"
+    relativeViewerPosition = "0.5 0.5"
+    keepLabelInViewer = TRUE
+    keepCursorPositionInViewerWhenMoving = FALSE
+    useDepthVisibility = TRUE
+    depthVisibility = 4
+    depthVisibilityMode = DEPTH_IN_SLICES
+    depthMinimumAlpha = 0
+    timePoint = 0
+    showLabelOnAllTimePoints = TRUE
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_RIGHT
+    fontSize = 25
+    fontSizeMode = FONT_SIZE_IN_PIXELS
+    alpha = 1
+    textShadow = FALSE
+    borderMode = SHOW_BORDER_OFF
+    backgroundColor = "0 0 0"
+    drawBackground = FALSE
+    backgroundAlpha = 1
+    backgroundMarginTop = 0
+    backgroundMarginRight = 0
+    backgroundMarginBottom = 0
+    backgroundMarginLeft = 0
+  }
+}
+module ImageStatistics {
+  internal  {
+    frame = "965 701 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "681 231 559 692"
+        sizeHint = "559 692"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageStatistics
+    innerMin = 0
+    innerMax = 1
+    updateMode = AutoUpdate
+    perSlice = FALSE
+    currentSlice = 0
+    lowerWidth = 0
+    upperWidth = 0
+    useMask = FALSE
+  }
+}
+module WorldVoxelConvert {
+  internal  {
+    frame = "989 1037 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "393 404 493 265"
+        sizeHint = "493 265"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WorldVoxelConvert
+    voxelX = 175
+    voxelY = 153
+    voxelZ = 98
+    worldX = 0.914703312729799
+    worldY = -26.5613346287794
+    worldZ = 0.361222856993351
+    voxelPos = "175 153 98"
+    worldPos = "0.914703312729799 -26.5613346287794 0.361222856993351"
+    voxelMode = TRUE
+    worldMode = FALSE
+    intVoxelCoords = TRUE
+    keepConstant = Voxel
+  }
+}
+module Threshold {
+  internal  {
+    frame = "913 805 96 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "808 407 344 340"
+        sizeHint = "304 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold1
+    threshold = 1
+    relativeThreshold = FALSE
+    comparisonOperator = Equal
+    conditionTrueWriteValue = UserDef
+    userConditionTrueValue = 1
+    conditionFalseWriteValue = UserDef
+    userConditionFalseValue = 0
+  }
+}
+module Threshold {
+  internal  {
+    frame = "1105 805 96 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "808 407 344 340"
+        sizeHint = "304 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold2
+    threshold = 2
+    relativeThreshold = FALSE
+    comparisonOperator = Equal
+    conditionTrueWriteValue = UserDef
+    userConditionTrueValue = 1
+    conditionFalseWriteValue = UserDef
+    userConditionFalseValue = 0
+  }
+}
+module SoView2DContour {
+  internal  {
+    frame = "773 609 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1171 467 261 408"
+        sizeHint = "261 408"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "710 277 500 600"
+        sizeHint = "260 228"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ContourLabel_1
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 0
+    quality = 1
+    contour_color = "1 0 0"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.80000001
+    drawLines = TRUE
+    pointSize = 3
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = TRUE
+    currentContour = 0
+    displayLegend = FALSE
+    stringOut = "$(item 255 0 0 3 65535  0.000 )"
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 1
+    activeStipple = FALSE
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1145 469 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "760 377 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup2
+  }
+}
+module SoView2DLabel {
+  internal  {
+    frame = "1189 609 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1158 191 691 438"
+        sizeHint = "483 438"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Label_2
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = FALSE
+    fixZOn = TRUE
+    color = "1 0 0"
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    cursorShape = UNDEFINED_CURSOR
+    text = 22%
+    viewerId = ""
+    textPositioning = WORLD_COORDINATES
+    worldPosition = "26.1330966949463 -28.6184768676758 -7.08752346038818"
+    relativeViewerPosition = "0.5 0.5"
+    keepLabelInViewer = TRUE
+    keepCursorPositionInViewerWhenMoving = FALSE
+    useDepthVisibility = TRUE
+    depthVisibility = 2
+    depthVisibilityMode = DEPTH_IN_SLICES
+    depthMinimumAlpha = 0
+    timePoint = 0
+    showLabelOnAllTimePoints = TRUE
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_RIGHT
+    fontSize = 25
+    fontSizeMode = FONT_SIZE_IN_PIXELS
+    alpha = 1
+    textShadow = FALSE
+    borderMode = SHOW_BORDER_OFF
+    backgroundColor = "0 0 0"
+    drawBackground = FALSE
+    backgroundAlpha = 1
+    backgroundMarginTop = 0
+    backgroundMarginRight = 0
+    backgroundMarginBottom = 0
+    backgroundMarginLeft = 0
+  }
+}
+module SoView2DContour {
+  internal  {
+    frame = "1053 609 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1378 93 261 408"
+        sizeHint = "261 408"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ContourLabel_2
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 0
+    quality = 1
+    contour_color = "1 0 0"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.80000001
+    drawLines = TRUE
+    pointSize = 3
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = TRUE
+    currentContour = 0
+    displayLegend = FALSE
+    stringOut = "$(item 255 0 0 3 65535  0.000 )"
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 1
+    activeStipple = FALSE
+  }
+}
+module Threshold {
+  internal  {
+    frame = "1265 805 96 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "747 415 344 340"
+        sizeHint = "304 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold3
+    threshold = 3
+    relativeThreshold = FALSE
+    comparisonOperator = Equal
+    conditionTrueWriteValue = UserDef
+    userConditionTrueValue = 1
+    conditionFalseWriteValue = UserDef
+    userConditionFalseValue = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1313 461 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "760 377 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup3
+  }
+}
+module SoView2DLabel {
+  internal  {
+    frame = "1469 609 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1158 191 691 438"
+        sizeHint = "483 438"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Label_3
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = FALSE
+    fixZOn = TRUE
+    color = "1 0 0"
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    cursorShape = UNDEFINED_CURSOR
+    text = 21%
+    viewerId = ""
+    textPositioning = WORLD_COORDINATES
+    worldPosition = "10.6697597503662 -17.356595993042 -4.1490626335144"
+    relativeViewerPosition = "0.5 0.5"
+    keepLabelInViewer = TRUE
+    keepCursorPositionInViewerWhenMoving = FALSE
+    useDepthVisibility = TRUE
+    depthVisibility = 4
+    depthVisibilityMode = DEPTH_IN_SLICES
+    depthMinimumAlpha = 0
+    timePoint = 0
+    showLabelOnAllTimePoints = TRUE
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_RIGHT
+    fontSize = 25
+    fontSizeMode = FONT_SIZE_IN_PIXELS
+    alpha = 1
+    textShadow = FALSE
+    borderMode = SHOW_BORDER_OFF
+    backgroundColor = "0 0 0"
+    drawBackground = FALSE
+    backgroundAlpha = 1
+    backgroundMarginTop = 0
+    backgroundMarginRight = 0
+    backgroundMarginBottom = 0
+    backgroundMarginLeft = 0
+  }
+}
+module SoView2DContour {
+  internal  {
+    frame = "1333 609 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "830 373 261 408"
+        sizeHint = "261 408"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ContourLabel_3
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 0
+    quality = 1
+    contour_color = "1 0 0"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.80000001
+    drawLines = TRUE
+    pointSize = 3
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = TRUE
+    currentContour = 0
+    displayLegend = FALSE
+    stringOut = "$(item 255 0 0 3 65535  0.000 )"
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 1
+    activeStipple = FALSE
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1221 301 184 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "760 377 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup6
+  }
+}
+module MinMaxScan {
+  internal  {
+    frame = "845 1029 136 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "156 308 572 361"
+        sizeHint = "549 361"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MinMaxScan
+    updateMode = AutoUpdate
+    typeSelect = "Proposed Data Type"
+    preferredIntType = PreferUnsigned
+  }
+}
+module Bypass {
+  internal  {
+    frame = "1325 1005 104 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "899 565 148 25"
+        sizeHint = "123 25"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Bypass
+    noBypass = FALSE
+  }
+}
+module RunPythonScript {
+  internal  {
+    frame = "1593 -183 192 64"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "285 228 1275 401"
+        sizeHint = "746 321"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OLDRunPythonScript1
+    in0 = ""
+    in1 = ""
+    in2 = ""
+    in3 = ""
+    in4 = ""
+    in5 = ""
+    in6 = ""
+    in7 = ""
+    in8 = ""
+    in9 = ""
+    inComment0 = in0
+    inComment1 = in1
+    inComment2 = in2
+    inComment3 = in3
+    inComment4 = in4
+    inComment5 = in5
+    inComment6 = in6
+    inComment7 = in7
+    inComment8 = in8
+    inComment9 = in9
+    autoApply0 = TRUE
+    autoApply1 = TRUE
+    autoApply2 = TRUE
+    autoApply3 = TRUE
+    autoApply4 = TRUE
+    autoApply5 = TRUE
+    autoApply6 = TRUE
+    autoApply7 = TRUE
+    autoApply8 = TRUE
+    autoApply9 = TRUE
+    out0 = ""
+    out1 = ""
+    out2 = ""
+    out3 = ""
+    out4 = ""
+    out5 = ""
+    out6 = ""
+    out7 = ""
+    out8 = ""
+    out9 = ""
+    outComment0 = out0
+    outComment1 = out1
+    outComment2 = out2
+    outComment3 = out3
+    outComment4 = out4
+    outComment5 = out5
+    outComment6 = out6
+    outComment7 = out7
+    outComment8 = out8
+    outComment9 = out9
+    initCode = "from mevis import MLAB
+# For backward compatibility, set up CTX as alias for ctx
+CTX = ctx # ctx is the network's context, not RunPythonScript's"
+    wakeUpCode = ""
+    code = "*import os
+import csv
+import pandas as pd
+import numpy as np
+
+
+# input args
+outdir_inference = "/home/newuser/Downloads/ideal_outdir_Aug_24_2022/"  # type: str
+outdir_inference = "C:/Users/tommy/OneDrive/Documenti/PhD_Mixed_Stuff/Mevis_Lab_Trials/ideal_outdir_Aug_25_2022_sub-066/"
+
+outdir_dcm = "C:/Users/tommy/OneDrive/Documenti/PhD_Mixed_Stuff/Mevis_Lab_Trials/outdir_dcm_Aug_25_2022/"
+
+
+lst_colors = [(1, 0, 0),  # red
+              (1, 0.666666686534882, 0),  # orange
+              (1, 1, 0),  # yellow
+              (0, 0, 1),  # blue
+              (0.333333343267441, 1, 1)]  # cyan
+
+for sub in sorted(os.listdir(outdir_inference)):
+    for ses in sorted(os.listdir(os.path.join(outdir_inference, sub))):
+        
+        print("\\nCreating overlay for {}_{}".format(sub, ses))
+        
+        unique_output_dir = os.path.join(outdir_dcm, sub, ses)  # define unique output dir for this sub-ses
+        if not os.path.exists(unique_output_dir):  # if directory does not exist
+            os.makedirs(unique_output_dir)  # create it
+        
+        assert len(os.listdir(os.path.join(outdir_inference, sub, ses))) == 3, "There should be 3 files per sub: the TOF dcm sequence, the .nii mask, and a .csv file"
+        tof_dcm_dir = [os.path.join(outdir_inference, sub, ses, item)
+                       for item in os.listdir(os.path.join(outdir_inference, sub, ses))
+                       if os.path.isdir(os.path.join(outdir_inference, sub, ses, item))]
+        path_nii_mask = [os.path.join(outdir_inference, sub, ses, item)
+                         for item in os.listdir(os.path.join(outdir_inference, sub, ses))
+                         if "reoriented_for_dcm" in item and os.path.splitext(item)[-1].lower() == ".gz"]
+        path_txt_file = [os.path.join(outdir_inference, sub, ses, item)
+                         for item in os.listdir(os.path.join(outdir_inference, sub, ses))
+                         if "reoriented_for_dcm" in item and os.path.splitext(item)[-1].lower() == ".txt"]
+
+        assert len(tof_dcm_dir) == 1, "Only one dir should match"
+        assert len(path_nii_mask) == 1, "Only one .nii mask should match"
+        assert len(path_txt_file) == 1, "Only one .txt file should match"
+        tof_dcm_dir = tof_dcm_dir[0]  # extract path
+        path_nii_mask = path_nii_mask[0]  # extract path
+        path_txt_file = path_txt_file[0]  # extract path
+
+        # load .txt file with pandas
+        df_txt_file = pd.read_csv(path_txt_file,
+                                  names=["label_num", "coord_i", "coord_j", "coord_k", "nb_nonzero_voxels", "probab", "nb_nonzero_slices"],
+                                  header=None)  # type: pd.DataFrame # load txt file with pandas
+        
+        # loop over dataframe rows
+        dict_aneurysms = dict()  # initialize empty dict
+        for idx, row in df_txt_file.iterrows():
+            dict_aneurysms[row['label_num']] = {'coord_i': row['coord_i'],
+                                                'coord_j': row['coord_j'],
+                                                'coord_k': row['coord_k'],
+                                                'probab': row['probab'],
+                                                'nb_nonzero_slices': row['nb_nonzero_slices']}
+        
+        print(dict_aneurysms)
+        
+        # Load readers
+        ctx.field("DirectDicomImport.source").value = tof_dcm_dir
+        ctx.field("DirectDicomImport.dplImport").touch()
+        ctx.field("itkImageFileReader.unresolvedFileName").value = path_nii_mask
+        ctx.field("itkImageFileReader.open").touch()
+        
+        # loop over different connected components
+        num_labels = int(ctx.field("MinMaxScan.trueMaxValue").value)
+        
+        print(num_labels)
+        
+        for i in range(1, num_labels + 1):
+          
+            print(i)
+          
+            # visualization of contours
+            ctx.field(f"ContourLabel_{i}.triggerRemoveAll").touch()
+            ctx.field(f"ContourLabel_{i}.triggerAddContour").touch()
+            ctx.field(f"ContourLabel_{i}.contour_color").value = lst_colors[i-1]  # set contour color
+            
+            # visualization of text label
+            ctx.field(f"Label_{i}.color").value = lst_colors[i-1]  # set text color
+            
+            # extract center position of conn. comp. (leav i and k untouched, and slightly shift j)
+            coordI = dict_aneurysms[i]['coord_i']
+            
+            # we want the text to appear above the lesion and not in the middle of it, so we slightly shift the j coordinate
+            if dict_aneurysms[i]['coord_j'] - 25 > 0:
+                coordJ = dict_aneurysms[i]['coord_j'] - 25
+            else:
+                coordJ = dict_aneurysms[i]['coord_j'] + 25
+            
+            coordK = dict_aneurysms[i]['coord_k']
+            # set position of label according to center of conn. comp.
+            ctx.field("WorldVoxelConvert.voxelPos").value = (int(coordI), int(coordJ), int(coordK))
+            ctx.field(f"Label_{i}.worldPosition").value = ctx.field("WorldVoxelConvert.worldPos").value
+            # set text with probability of this conn. comp.
+            ctx.field(f"Label_{i}.text").value = "{}%".format(dict_aneurysms[i]['probab'])
+            # set slices in which text is displayed (we only want text on nonzero slices); we set half the nb. of nonzero slices cause it's half above and half below
+            ctx.field(f"Label_{i}.depthVisibility").value = int(dict_aneurysms[i]['nb_nonzero_slices'] / 2)
+            
+            # ctx.field(f"Label_1.drawingOn").value = False
+        
+        # Generating RGB image
+        ctx.field("SubImage.fullSize").touch()  # set all field to the full values of the input image
+        ctx.field("SubImage.sz").value=1  # ensure Size Z is 1 (we save the RGB volume one slice at a time)
+
+        numSlices = ctx.field("Info.sizeZ").value  # extract number of slices of DCM volume
+        ctx.field("OffscreenRenderer.size").value = [ctx.field("Info.sizeX").value, ctx.field("Info.sizeY").value]  # set OffscreenRender X and Y according to those of DCM volume
+        ctx.field("OffscreenRenderer.pixelScale").value = 1  # set scale factor to 1
+
+        voxelToWorldMat = ctx.field("Info.worldMatrix").value  # extract voxel2world matrix
+        voxelToWorldMat  = np.array(voxelToWorldMat)  # convert to numpy array
+
+        # Create new UID for new series
+        ctx.field("DicomUIDGenerator.create").touch()
+        
+        slice_nb = 0  # emtpy counter used to name the newly created slices
+        print("Start saving...")
+        for valInteger in range(numSlices):  # loop over slices
+            
+            # Extract slice
+            ctx.field("SubImage.z").value = valInteger
+            
+            # Read orientation properties of original slice
+            worldPos = np.dot(voxelToWorldMat, (0, 0, valInteger, 1))
+            voxelToWorldMatSlice = voxelToWorldMat.copy()
+            voxelToWorldMatSlice[0][3] = worldPos[0]
+            voxelToWorldMatSlice[1][3] = worldPos[1]
+            voxelToWorldMatSlice[2][3] = worldPos[2]
+            ctx.field("ImagePropertyConvert.pageSizeX").value = ctx.field("Info.sizeX").value
+            ctx.field("ImagePropertyConvert.pageSizeY").value = ctx.field("Info.sizeY").value
+            ctx.field("ImagePropertyConvert.pageSizeZ").value = ctx.field("Info.sizeZ").value
+            ctx.field("ImagePropertyConvert.worldMatrix").value = voxelToWorldMatSlice
+            
+            # Generate fused image
+            ctx.field("OffscreenRenderer.update").touch()
+            MLAB.processEvents()
+            MLAB.processInventorQueue()
+            
+            # ---------- Change DICOM tags of output image
+            # ImageType
+            ctx.field("DicomTagModify.tagValue0").value = "SECONDARY\\\\DERIVED\\\\FUSED"
+            # SeriesInstanceUID (assign the unique Series Instance UID created before)
+            ctx.field("DicomTagModify.tagValue1").value = ctx.field("DicomUIDGenerator.UID").value
+            # SeriesNumber
+            ctx.field("DicomTagModify.tagValue2").value = "15000"
+            # SeriesDescription
+            ctx.field("DicomTagModify.tagValue3").value = "ResearchOnly_FusedMap"
+            # ImageComments
+            ctx.field("DicomTagModify.tagValue4").value = "Not for clinical use"
+            
+            # Saves fused image to dicom
+            ctx.field("ImageSave.filename").value = f"{unique_output_dir}/slice_{slice_nb}.dcm"
+            ctx.field("ImageSave.save").touch()
+            MLAB.processEvents()
+            MLAB.processInventorQueue()
+            
+            # print every 20 slices
+            if slice_nb%30==0:
+                print(f"  Slice {slice_nb} saved")
+            
+            # increment counter
+            slice_nb += 1
+        
+        print("Save completed!")
+        
+        
+        
+        
+        
+*"
+    finalizeCode = ""
+    showFields = FALSE
+    showInitCode = FALSE
+    showWakeUpCode = FALSE
+    showCode = TRUE
+    showFinalizeCode = FALSE
+    showConsole = FALSE
+  }
+}
+module PythonPip {
+  internal  {
+    frame = "1181 -51 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "628 240 665 675"
+        sizeHint = "665 675"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PythonPip
+    package = pandas
+    upgrade = FALSE
+    forceReinstall = FALSE
+    command = help
+  }
+}
+module Threshold {
+  internal  {
+    frame = "1457 805 96 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "1130 414 344 340"
+        sizeHint = "304 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold4
+    threshold = 4
+    relativeThreshold = FALSE
+    comparisonOperator = Equal
+    conditionTrueWriteValue = UserDef
+    userConditionTrueValue = 1
+    conditionFalseWriteValue = UserDef
+    userConditionFalseValue = 0
+  }
+}
+module SoView2DContour {
+  internal  {
+    frame = "1613 609 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "830 373 261 408"
+        sizeHint = "261 408"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ContourLabel_4
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 0
+    quality = 1
+    contour_color = "1 0 0"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.80000001
+    drawLines = TRUE
+    pointSize = 3
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = TRUE
+    currentContour = 0
+    displayLegend = FALSE
+    stringOut = "$(item 255 0 0 3 65535  0.000 )"
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 1
+    activeStipple = FALSE
+  }
+}
+module SoView2DLabel {
+  internal  {
+    frame = "1749 609 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1158 191 691 438"
+        sizeHint = "483 438"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Label_4
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = FALSE
+    fixZOn = TRUE
+    color = "1 0 0"
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    cursorShape = UNDEFINED_CURSOR
+    text = 22%
+    viewerId = ""
+    textPositioning = WORLD_COORDINATES
+    worldPosition = "0.91470330953598 -26.5613346099854 0.361222863197327"
+    relativeViewerPosition = "0.5 0.5"
+    keepLabelInViewer = TRUE
+    keepCursorPositionInViewerWhenMoving = FALSE
+    useDepthVisibility = TRUE
+    depthVisibility = 2
+    depthVisibilityMode = DEPTH_IN_SLICES
+    depthMinimumAlpha = 0
+    timePoint = 0
+    showLabelOnAllTimePoints = TRUE
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_RIGHT
+    fontSize = 25
+    fontSizeMode = FONT_SIZE_IN_PIXELS
+    alpha = 1
+    textShadow = FALSE
+    borderMode = SHOW_BORDER_OFF
+    backgroundColor = "0 0 0"
+    drawBackground = FALSE
+    backgroundAlpha = 1
+    backgroundMarginTop = 0
+    backgroundMarginRight = 0
+    backgroundMarginBottom = 0
+    backgroundMarginLeft = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1489 461 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "760 377 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup4
+  }
+}
+module Threshold {
+  internal  {
+    frame = "1673 805 96 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "1130 414 344 340"
+        sizeHint = "304 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold5
+    threshold = 5
+    relativeThreshold = FALSE
+    comparisonOperator = Equal
+    conditionTrueWriteValue = UserDef
+    userConditionTrueValue = 1
+    conditionFalseWriteValue = UserDef
+    userConditionFalseValue = 0
+  }
+}
+module SoView2DContour {
+  internal  {
+    frame = "1901 609 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "830 373 261 408"
+        sizeHint = "261 408"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ContourLabel_5
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 0
+    quality = 1
+    contour_color = "0.200000002980232 1 0.200000002980232"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.80000001
+    drawLines = TRUE
+    pointSize = 1
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = TRUE
+    currentContour = 0
+    displayLegend = FALSE
+    stringOut = "$(item 255 0 0 3 65535  0.000 )"
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 1
+    activeStipple = FALSE
+  }
+}
+module SoView2DLabel {
+  internal  {
+    frame = "2045 609 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1158 191 691 438"
+        sizeHint = "483 438"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Label_5
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = FALSE
+    fixZOn = TRUE
+    color = "1 0 0"
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    cursorShape = UNDEFINED_CURSOR
+    text = ""
+    viewerId = ""
+    textPositioning = WORLD_COORDINATES
+    worldPosition = "-11.286678314209 -3.3857057094574 35.3022117614746"
+    relativeViewerPosition = "0.5 0.5"
+    keepLabelInViewer = TRUE
+    keepCursorPositionInViewerWhenMoving = FALSE
+    useDepthVisibility = TRUE
+    depthVisibility = 2
+    depthVisibilityMode = DEPTH_IN_SLICES
+    depthMinimumAlpha = 0
+    timePoint = 0
+    showLabelOnAllTimePoints = TRUE
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_RIGHT
+    fontSize = 25
+    fontSizeMode = FONT_SIZE_IN_PIXELS
+    alpha = 1
+    textShadow = FALSE
+    borderMode = SHOW_BORDER_OFF
+    backgroundColor = "0 0 0"
+    drawBackground = FALSE
+    backgroundAlpha = 1
+    backgroundMarginTop = 0
+    backgroundMarginRight = 0
+    backgroundMarginBottom = 0
+    backgroundMarginLeft = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1649 461 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "760 377 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup5
+  }
+}
+module SoView2DContour {
+  internal  {
+    frame = "1453 157 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "830 373 261 408"
+        sizeHint = "261 408"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DContour
+    interactionProviderID = ""
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 1
+    quality = 1
+    contour_color = "0.200000002980232 1 0.200000002980232"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.80000001
+    drawLines = TRUE
+    pointSize = 1
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = FALSE
+    currentContour = 0
+    displayLegend = FALSE
+    stringOut = ""
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 0
+    activeStipple = FALSE
+  }
+}
+module RunPythonScript {
+  internal  {
+    frame = "1185 13 160 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "573 206 880 531"
+        sizeHint = "746 321"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = RunPythonScript
+    in0 = ""
+    in1 = ""
+    in2 = ""
+    in3 = ""
+    in4 = ""
+    in5 = ""
+    in6 = ""
+    in7 = ""
+    in8 = ""
+    in9 = ""
+    inComment0 = in0
+    inComment1 = in1
+    inComment2 = in2
+    inComment3 = in3
+    inComment4 = in4
+    inComment5 = in5
+    inComment6 = in6
+    inComment7 = in7
+    inComment8 = in8
+    inComment9 = in9
+    autoApply0 = TRUE
+    autoApply1 = TRUE
+    autoApply2 = TRUE
+    autoApply3 = TRUE
+    autoApply4 = TRUE
+    autoApply5 = TRUE
+    autoApply6 = TRUE
+    autoApply7 = TRUE
+    autoApply8 = TRUE
+    autoApply9 = TRUE
+    out0 = ""
+    out1 = ""
+    out2 = ""
+    out3 = ""
+    out4 = ""
+    out5 = ""
+    out6 = ""
+    out7 = ""
+    out8 = ""
+    out9 = ""
+    outComment0 = out0
+    outComment1 = out1
+    outComment2 = out2
+    outComment3 = out3
+    outComment4 = out4
+    outComment5 = out5
+    outComment6 = out6
+    outComment7 = out7
+    outComment8 = out8
+    outComment9 = out9
+    initCode = "from mevis import MLAB
+# For backward compatibility, set up CTX as alias for ctx
+CTX = ctx # ctx is the network's context, not RunPythonScript's"
+    wakeUpCode = ""
+    code = "*import os
+import csv
+import pandas as pd
+import numpy as np
+import shutil
+import pydicom
+import math
+from datetime import datetime
+
+
+__authors__ = "Ricardo Corredor, Tommaso Di Noto"
+__version__ = "0.0.1"
+__email__ = "tommydino@hotmail.it"
+__status__ = "Prototype"
+
+
+# input args
+in_mevislab = "C:/varie_phd_tommy/aneurysm_project/mevislab/in_mevislab/12_in_mevislab_Feb_01_2023"  # type: str
+out_mevislab = "C:/varie_phd_tommy/aneurysm_project/mevislab/out_mevislab/12_out_mevislab_Feb_01_2023"  # type: str
+
+assert in_mevislab != out_mevislab, "in_mevislab and out_mevislab should be different"
+assert os.path.exists(in_mevislab), f"Path {in_mevislab} of in_mevislab does not exist"
+
+
+def clear_contours_and_labels() -> None:
+    print("\\nClean everything...")
+    for i in range(1, 6):  # we can have a total of 5 connected components
+        ctx.field(f"ContourLabel_{i}.triggerRemoveAll").touch()
+        ctx.field(f"Label_{i}.text").value = ""
+
+
+def create_dir_if_not_exist(dir_to_create: str) -> None:
+    """This function creates the input dir if it doesn't exist.
+    Args:
+        dir_to_create: directory that we want to create
+    """
+    if not os.path.exists(dir_to_create):  # if dir doesn't exist
+        os.makedirs(dir_to_create, exist_ok=True)  # create it
+
+
+def round_half_up(n: float, decimals: float = 0) -> float:
+    """This function rounds to the nearest integer number (e.g 2.4 becomes 2.0 and 2.6 becomes 3);
+     in case of tie, it rounds up (e.g. 1.5 becomes 2.0 and not 1.0)
+    Args:
+        n: number to round
+        decimals: number of decimal figures that we want to keep; defaults to zero
+    Returns:
+        rounded_number: input number rounded with the desired decimals
+    """
+    multiplier = 10 ** decimals
+
+    rounded_number = math.floor(n * multiplier + 0.5) / multiplier
+
+    return rounded_number
+
+
+def change_dcm_tags_one_derived_image(ds: pydicom.dataset.FileDataset,
+                                      series_date: str,
+                                      invented_manufacturer: str,
+                                      invented_model_name: str,
+                                      series_time: str,
+                                      new_series_name: str,
+                                      new_protocol_name: str,
+                                      original_study_instance_uid: pydicom.uid.UID):
+    """This function changes some dicom tags for the derived volume (following https://gdcm.sourceforge.net/wiki/index.php/Writing_DICOM but not only).
+    Args:
+        ds: pydicom object that contains the dicom tags
+        series_date: today's date (used as series' date)
+        invented_manufacturer: invented manufacturer name
+        invented_model_name: invented model name
+        series_time: generated time of series
+        new_series_name: name of new generated series
+        new_protocol_name: name of new generated protocol
+        original_study_instance_uid: UID of original (i.e. without any overlay) study
+    Returns:
+        ds: same pydicom object, but with some modified tags
+    """
+    # below, we report all the dcm tags that will be changed
+    
+    # 1) Media Storage SOP Instance UID (0002, 0003), it's a tag in the file meta information
+    generated_media_storage_sop_instance_uid = pydicom.uid.generate_uid()  # generate UID
+    ds.file_meta.MediaStorageSOPInstanceUID = generated_media_storage_sop_instance_uid
+    
+    # 2) Image Type (0008, 0008) was already modified within MeVisLab
+    
+    # 3) Instance creation date (0008, 0012)
+    if "InstanceCreationDate" in ds:
+        ds.InstanceCreationDate = series_date
+    
+    # 4) Instance creation time (0008, 0013)
+    if "InstanceCreationTime" in ds:
+        time_now = datetime.today().strftime('%H%M%S.%f')  # save time now
+        ds.InstanceCreationTime = time_now
+    
+    # 5) SOP Instance UID (0008, 0018)
+    if "SOPInstanceUID" in ds:
+        generated_sop_instance_uid = pydicom.uid.generate_uid()  # generate UID
+        ds.SOPInstanceUID = generated_sop_instance_uid
+    
+    # 6) Acquisition Time (0008, 0032); generate a unique time for each dcm image
+    if "AcquisitionTime" in ds:
+        time_now = datetime.today().strftime('%H%M%S.%f')  # save time now
+        ds.AcquisitionTime = time_now
+    
+    # 7) Series Time (0008, 0031); this needs to be the same for all dcm images in the series, so we define it outside of the function
+    if "SeriesTime" in ds:
+        ds.SeriesTime = series_time
+    
+    # 8) Content Time (0008, 0032); this needs to be different for each dcm image
+    if "ContentTime" in ds:
+        time_now = datetime.today().strftime('%H%M%S.%f')  # save time now
+        ds.ContentTime = time_now
+    
+    # 9) Manufacturer (0008, 0070)
+    if "Manufacturer" in ds:
+      ds.Manufacturer = invented_manufacturer
+    
+    # 10) Series Description (0008, 103E) was already modified within MeVisLab
+    
+    # 11) Manufacturer's model name (0008, 1090)
+    if "ManufacturerModelName" in ds:
+        ds.ManufacturerModelName = invented_model_name
+    
+    # 12) Referenced Image Sequence (0008, 1140)
+    ref_img_seq = ds.ReferencedImageSequence
+    for idx, _ in enumerate(ref_img_seq):
+        if "ReferencedSOPInstanceUID" in ref_img_seq[idx]:
+            new_uid = pydicom.uid.generate_uid()  # generate UID
+            ref_img_seq[idx].ReferencedSOPInstanceUID = new_uid
+    
+    # 13) Derivation description (0008, 2111)
+    ds.add_new(0x00082111, 'ST', 'Segmentation_Neuroinformatics_Paper')
+    
+    # 14) Source image sequence (0008, 2112): don't know what to put and how to generate a valid SQ tag
+    # ds.add_new(0x00082112, 'SQ', '')
+    
+    # 15) Sequence Name (0018, 0024)
+    if "SequenceName" in ds:
+        ds.SequenceName = new_series_name
+    
+    # 16) Protocol Name (0018, 1030)
+    if "ProtocolName" in ds:
+        ds.ProtocolName = new_protocol_name
+        
+    # 17) Study Instance UID (0020, 000D): this should be identical to the one of the original series cause the study is the same
+    if ds.StudyInstanceUID != original_study_instance_uid:  # if it's different
+        ds.StudyInstanceUID = original_study_instance_uid  # change it
+    
+    # 18) Series Instance UID (0020, 000E) was already modified in MeVisLab
+    
+    # 19) Series Number (0020, 0011) was already modified in MeVisLab
+    
+    # 20) Image Comments (0020, 4000) was already modified in MeVisLab
+    
+    # 21) Pixel Data (7FE0, 0010) was already modified in MeVisLab
+    
+    return ds
+
+
+
+
+for sub in sorted(os.listdir(in_mevislab)):  # loop over subjects
+    for ses in sorted(os.listdir(os.path.join(in_mevislab, sub))):  # loop over sessions
+        
+        # before beginning any sub-ses, clear all contours and labels (texts) to avoid overlay contaminations across patients
+        clear_contours_and_labels()
+        
+        print(f"Creating overlay for {sub}_{ses}")
+
+        unique_output_dir = os.path.join(out_mevislab, sub, ses)  # define unique output dir for this sub-ses
+        create_dir_if_not_exist(unique_output_dir)
+        output_dcm_sequence_dir = os.path.join(unique_output_dir, "TOF_fused")  # define output dir where we'll save the fused dcm sequence (i.e. the one with the overlay)
+        create_dir_if_not_exist(output_dcm_sequence_dir)
+        
+        
+        assert len(os.listdir(os.path.join(in_mevislab, sub, ses))) == 3, "There should be 3 files per sub: the TOF dcm sequence, the .nii mask, and a .csv file"
+        tof_dcm_dir = [os.path.join(in_mevislab, sub, ses, item)
+                       for item in os.listdir(os.path.join(in_mevislab, sub, ses))
+                       if os.path.isdir(os.path.join(in_mevislab, sub, ses, item))]
+        path_nii_mask = [os.path.join(in_mevislab, sub, ses, item)
+                         for item in os.listdir(os.path.join(in_mevislab, sub, ses))
+                         if "reoriented_for_dcm" in item and os.path.splitext(item)[-1].lower() == ".gz"]
+        path_txt_file = [os.path.join(in_mevislab, sub, ses, item)
+                         for item in os.listdir(os.path.join(in_mevislab, sub, ses))
+                         if "reoriented_for_dcm" in item and os.path.splitext(item)[-1].lower() == ".txt"]
+
+        assert len(tof_dcm_dir) == 1, "Only one dir should match"
+        assert len(path_nii_mask) == 1, "Only one .nii mask should match"
+        assert len(path_txt_file) == 1, "Only one .txt file should match"
+        tof_dcm_dir = tof_dcm_dir[0]  # extract path
+        path_nii_mask = path_nii_mask[0]  # extract path
+        path_txt_file = path_txt_file[0]  # extract path
+        
+        # copy original TOF sequence into new output directory
+        if not os.path.exists(os.path.join(unique_output_dir, "TOF")):
+            shutil.copytree(src=tof_dcm_dir, dst=os.path.join(unique_output_dir, "TOF"))
+
+        # load .txt file with pandas
+        df_txt_file = pd.read_csv(path_txt_file,
+                                  names=["label_num", "coord_i", "coord_j", "coord_k", "nb_nonzero_voxels", "probab", "nb_nonzero_slices"],
+                                  header=None)  # type: pd.DataFrame # load txt file with pandas
+        
+        # loop over dataframe rows
+        dict_aneurysms = dict()  # initialize empty dict
+        for idx, row in df_txt_file.iterrows():
+            dict_aneurysms[row['label_num']] = {'coord_i': row['coord_i'],
+                                                'coord_j': row['coord_j'],
+                                                'coord_k': row['coord_k'],
+                                                'probab': row['probab'],
+                                                'nb_nonzero_slices': row['nb_nonzero_slices']}
+        
+        
+        # Load readers
+        ctx.field("DirectDicomImport.source").value = tof_dcm_dir
+        ctx.field("DirectDicomImport.dplImport").touch()
+        ctx.field("itkImageFileReader.unresolvedFileName").value = path_nii_mask
+        ctx.field("itkImageFileReader.open").touch()
+        
+        # set color of contours and probabilities
+        chosen_color = (1, 0, 0)
+        
+        # extract number of connected components (labels)
+        num_labels = int(ctx.field("MinMaxScan.trueMaxValue").value)
+        
+        # loop over different connected components
+        for i in range(1, num_labels + 1):
+
+            # visualization of contours
+            ctx.field(f"ContourLabel_{i}.triggerRemoveAll").touch()
+            ctx.field(f"ContourLabel_{i}.triggerAddContour").touch()
+            ctx.field(f"ContourLabel_{i}.contour_color").value = chosen_color  # set contour color
+            ctx.field(f"ContourLabel_{i}.pointSize").value = 3  # increase contour width/thickness (default is 1)
+
+            # visualization of text label
+            ctx.field(f"Label_{i}.color").value = chosen_color  # set text color
+
+            # extract center position of conn. comp. (leave i and k untouched, and slightly shift j)
+            coordI = dict_aneurysms[i]['coord_i']
+
+            # we want the text to appear above the lesion and not in the middle of it, so we slightly shift the j coordinate
+            if dict_aneurysms[i]['coord_j'] - 25 > 0:
+                coordJ = dict_aneurysms[i]['coord_j'] - 25
+            else:
+                coordJ = dict_aneurysms[i]['coord_j'] + 25
+
+            coordK = dict_aneurysms[i]['coord_k']
+            
+            # set position of label according to center of conn. comp.
+            ctx.field("WorldVoxelConvert.voxelPos").value = (int(coordI), int(coordJ), int(coordK))
+            ctx.field(f"Label_{i}.worldPosition").value = ctx.field("WorldVoxelConvert.worldPos").value
+            # set text with probability of this conn. comp.
+            ctx.field(f"Label_{i}.text").value = "{}%".format(dict_aneurysms[i]['probab'])
+            # set slices in which text is displayed (we only want text on nonzero slices); we set half the nb. of nonzero slices cause it's half above and half below
+            ctx.field(f"Label_{i}.useDepthVisibility").value = True
+            
+            
+            if dict_aneurysms[i]['nb_nonzero_slices'] >= 1:
+                ctx.field(f"Label_{i}.depthVisibility").value = int(round_half_up(dict_aneurysms[i]['nb_nonzero_slices'] / 2))
+                ctx.field(f"Label_{i}.fontSize").value = 25  # set font size
+                ctx.field(f"Label_{i}.drawingOn").value = True
+            else:
+                raise ValueError(f"We expect to have at least 1 non-zero slice; got {dict_aneurysms[i]['nb_nonzero_slices']} instead")
+            
+        # Generating RGB image
+        ctx.field("SubImage.fullSize").touch()  # set all field to the full values of the input image
+        ctx.field("SubImage.sz").value = 1  # ensure Size Z is 1 (we save the RGB volume one slice at a time)
+
+        numSlices = ctx.field("Info.sizeZ").value  # extract number of slices of DCM volume
+        ctx.field("OffscreenRenderer.size").value = [ctx.field("Info.sizeX").value, ctx.field("Info.sizeY").value]  # set OffscreenRender X and Y according to those of DCM volume
+        ctx.field("OffscreenRenderer.pixelScale").value = 1  # set scale factor to 1
+
+        voxelToWorldMat = ctx.field("Info.worldMatrix").value  # extract voxel2world matrix
+        voxelToWorldMat = np.array(voxelToWorldMat)  # convert to numpy array
+
+        # Create new SeriesInstanceUID for new series
+        ctx.field("DicomUIDGenerator.create").touch()  # press button
+        generated_SeriesInstanceUID = ctx.field("DicomUIDGenerator.UID").value  # store generated UID in one variable
+        
+
+        # Start saving overlay RGB slices to disk
+        slice_nb = 0  # emtpy counter used to name the newly created slices
+        for valInteger in range(numSlices):  # loop over slices
+
+            # Extract slice
+            ctx.field("SubImage.z").value = valInteger
+
+            # Read orientation properties of original slice
+            worldPos = np.dot(voxelToWorldMat, (0, 0, valInteger, 1))
+            voxelToWorldMatSlice = voxelToWorldMat.copy()
+            voxelToWorldMatSlice[0][3] = worldPos[0]
+            voxelToWorldMatSlice[1][3] = worldPos[1]
+            voxelToWorldMatSlice[2][3] = worldPos[2]
+            ctx.field("ImagePropertyConvert.pageSizeX").value = ctx.field("Info.sizeX").value
+            ctx.field("ImagePropertyConvert.pageSizeY").value = ctx.field("Info.sizeY").value
+            ctx.field("ImagePropertyConvert.pageSizeZ").value = ctx.field("Info.sizeZ").value
+            ctx.field("ImagePropertyConvert.worldMatrix").value = voxelToWorldMatSlice
+
+            # Generate fused image
+            ctx.field("OffscreenRenderer.update").touch()
+            MLAB.processEvents()
+            MLAB.processInventorQueue()
+
+            # ---------- Change DICOM tags of output dcm volume
+            # ImageType (0008, 0008)
+            ctx.field("DicomTagModify.tagValue0").value = "DERIVED\\\\SECONDARY\\\\FUSED"
+            # SeriesInstanceUID (0020, 000E) (assign the unique Series Instance UID created before)
+            ctx.field("DicomTagModify.tagValue1").value = generated_SeriesInstanceUID
+            # SeriesNumber (0020, 0011)
+            ctx.field("DicomTagModify.tagValue2").value = "15000"
+            # SeriesDescription (0008, 103E)
+            ctx.field("DicomTagModify.tagValue3").value = "ResearchOnly_FusedMap"
+            # ImageComments (0020, 4000)
+            ctx.field("DicomTagModify.tagValue4").value = "Not for clinical use"
+
+            # Saves fused image to dicom
+            ctx.field("ImageSave.filename").value = f"{output_dcm_sequence_dir}/slice_{slice_nb}.dcm"
+            ctx.field("ImageSave.save").touch()
+            MLAB.processEvents()
+            MLAB.processInventorQueue()
+
+            # print every XX slices
+            # if slice_nb%30==0:
+            # print(f"  Slice {slice_nb} saved")
+
+            # increment counter
+            slice_nb += 1
+
+        print("Save completed!")
+        
+        print("Modify other dicom tags...")
+        date = datetime.today().strftime('%Y%m%d')  # save today's date
+        invented_manufacturer = "ManufacturerNotRelevant"
+        invented_model_name = "ModelNotRelevant"
+        new_series_name = "tof_segment"
+        new_protocol_name = "tof with overlay"
+        # Create invented time of series (using time now)
+        series_time_now = datetime.today().strftime('%H%M%S.%f')  # save time now
+        # ensure original and derived sequences have same Study Instance UID
+        path_one_original_dcm_img = os.path.join(tof_dcm_dir, os.listdir(tof_dcm_dir)[0])
+        ds_tof_original = pydicom.dcmread(path_one_original_dcm_img)
+        original_study_instance_uid = ds_tof_original.StudyInstanceUID
+        
+        for dcm_image in sorted(os.listdir(output_dcm_sequence_dir)):  # loop over generated dcm images
+            ds = pydicom.dcmread(os.path.join(output_dcm_sequence_dir, dcm_image))  # pydicom.dataset.FileDataset
+            modified_ds = change_dcm_tags_one_derived_image(ds,
+                                                            date,
+                                                            invented_manufacturer,
+                                                            invented_model_name,
+                                                            series_time_now,
+                                                            new_series_name,
+                                                            new_protocol_name,
+                                                            original_study_instance_uid)  # pydicom.dataset.FileDataset
+            ds.save_as(filename=os.path.join(output_dcm_sequence_dir, dcm_image))  # save dcm image with modified dcm tags to disk
+        
+        
+        
+        
+        
+        
+        
+*"
+    finalizeCode = ""
+    showFields = FALSE
+    showInitCode = FALSE
+    showWakeUpCode = FALSE
+    showCode = TRUE
+    showFinalizeCode = FALSE
+    showConsole = FALSE
+  }
+}
+connections  {
+  View2D.inImage = SubImage.output0
+  View2D.inInvPreLUT = SoGroup6.self
+  SoGroup1.children = "ContourLabel_1.self Label_1.self"
+  OffscreenRenderer.sceneGraph = View2D.self
+  Info.input0 = DirectDicomImport.output0
+  SubImage.input0 = DirectDicomImport.output0
+  ImageSave.input0 = ImagePropertyConvert.output0
+  ImagePropertyConvert.input0 = DicomTagModify.output0
+  DicomTagModify.input0 = SetDicomTreeOnImage.output0
+  DicomFrameSelect.input0 = DirectDicomImport.output0
+  DicomFrameSelect.zPos = SubImage.z
+  GetDicomTreeFromImage.input0 = DicomFrameSelect.output0
+  SetDicomTreeOnImage.input0 = OffscreenRenderer.output0
+  SetDicomTreeOnImage.inDicomTree = GetDicomTreeFromImage.outDicomTree
+  View2D1.inImage = DirectDicomImport.output0
+  View2D3.inImage = DirectDicomImport.output0
+  View2D3.inInvPreLUT = SoGroup6.self
+  ImageStatistics.input0 = Threshold1.output0
+  WorldVoxelConvert.input0 = itkImageFileReader.output0
+  Threshold1.input0 = Bypass.output0
+  Threshold2.input0 = Bypass.output0
+  ContourLabel_1.image = Threshold1.output0
+  SoGroup2.children = "ContourLabel_2.self Label_2.self"
+  ContourLabel_2.image = Threshold2.output0
+  Threshold3.input0 = Bypass.output0
+  SoGroup3.children = "ContourLabel_3.self Label_3.self"
+  ContourLabel_3.image = Threshold3.output0
+  SoGroup6.children = "SoGroup1.self SoGroup2.self SoGroup3.self SoGroup4.self SoGroup5.self"
+  MinMaxScan.input0 = itkImageFileReader.output0
+  Bypass.input0 = itkImageFileReader.output0
+  Threshold4.input0 = Bypass.output0
+  ContourLabel_4.image = Threshold4.output0
+  SoGroup4.children = "ContourLabel_4.self Label_4.self"
+  Threshold5.input0 = Bypass.output0
+  ContourLabel_5.image = Threshold5.output0
+  SoGroup5.children = "ContourLabel_5.self Label_5.self"
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 56
+        objectName = ""
+        parentUniqueId = 0
+        frame = "1103 -270 200 200"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "Double click the RunPythonScript module and set the input/output folders accordingly"
+        richText = "*<html>
+  <head>
+    <style type="text/css">
+      a.headerlink {
+        visibility: hidden;
+      }
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+
+  <p>Double click the RunPythonScript module and set the input/output folders accordingly</p>
+
+
+  </body>
+</html>*"
+        titleText = README
+        isCollapsed = False
+        drawAsComment = False
+        titleFrame = "1108 -265 190 22"
+      }
+    }
+  }
+}
