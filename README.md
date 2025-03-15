@@ -1,12 +1,10 @@
 # Assessing workflow impact and clinical utility of AI-assisted brain aneurysm detection: a multi-reader study
 <p float="middle">
-  <img src="https://github.com/connectomicslab/AI-Assisted-Aneurysm-Detection/blob/main/images/AI_assisted_scenario.png" width="800"/>
+  <img src="https://github.com/connectomicslab/AI-Assisted-Aneurysm-Detection/blob/main/images/AI_assisted_scenario.png" width="700"/>
 </p>
 
 This repository contains the code for the paper: "Assessing workflow impact and clinical utility of AI-assisted brain
 aneurysm detection: a multi-reader study".
-
-
 
 ## Installation/Softwares
 The results of the paper were obtained with python 3.9 and a Windows OS. Reproducibility for different configurations is not guaranteed.
@@ -17,6 +15,12 @@ To run the python scripts:
 1) Clone the repository
 2) Create a conda/pip environment and installed all required packages. If you are not familiar with pip/conda environments, please check out the [official documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 Alternatively, feel free to use your favorite [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) such as [PyCharm](https://www.jetbrains.com/pycharm/download/#section=linux) or [Visual Studio Code](https://code.visualstudio.com/) to set up an environment.
+
+## Data
+The majority of the dataset used for this study can be downloaded from this
+[OpenNEURO link](https://openneuro.org/datasets/ds003949).
+The files containing the results of the two readings, both for the junior and senior radiologists,
+are located inside the directory `READINGS`.
 
 ## Usage
 ### Overlay Series Generation
@@ -35,9 +39,6 @@ All the scripts related to the confidence scores are located in the directory `c
 To script used to create the barplots that display the confidence scores is `d20240916_confidence_scores_barplots.py`.
 To script used to run the XYZ test to compare the distributions of confidence scores is ``
 
-
-## Data
-The majority of the dataset used for this study can be downloaded from this [OpenNEURO link](https://openneuro.org/datasets/ds003949).
 
 ## How to cite
 If you're using our dataset/model or comparing performances with the ones presented in this work, please cite the following publications:
