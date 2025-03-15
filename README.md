@@ -1,6 +1,6 @@
 # Assessing workflow impact and clinical utility of AI-assisted brain aneurysm detection: a multi-reader study
 <p float="middle">
-  <img src="PATH_HERE" width="335" />
+  <img src="https://github.com/connectomicslab/AI-Assisted-Aneurysm-Detection/blob/main/images/AI_assisted_scenario.png" width="335" />
 </p>
 
 This repository contains the code for the paper: "Assessing workflow impact and clinical utility of AI-assisted brain
