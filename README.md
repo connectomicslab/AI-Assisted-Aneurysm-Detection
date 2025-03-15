@@ -1,6 +1,6 @@
 # Assessing workflow impact and clinical utility of AI-assisted brain aneurysm detection: a multi-reader study
 <p float="middle">
-  <img src="https://github.com/connectomicslab/AI-Assisted-Aneurysm-Detection/blob/main/images/AI_assisted_scenario.png" />
+  <img src="https://github.com/connectomicslab/AI-Assisted-Aneurysm-Detection/blob/main/images/AI_assisted_scenario.png" width="800"/>
 </p>
 
 This repository contains the code for the paper: "Assessing workflow impact and clinical utility of AI-assisted brain
@@ -10,7 +10,7 @@ aneurysm detection: a multi-reader study".
 
 ## Installation/Softwares
 The results of the paper were obtained with python 3.9 and a Windows OS. Reproducibility for different configurations is not guaranteed.
-For the R script, we used RStudio 2022.07.2. For the creation of the overlay dicom series, we used MeVisLab 3.4.2.
+For the R scripts, we used RStudio 2022.07.2. For the creation of the overlay dicom series, we used MeVisLab 3.4.2.
 
 ### Setup conda environment
 To run the python scripts:
@@ -27,7 +27,8 @@ To code used to run the McNemar's tests for the sensitivity and specificity anal
 located in the directory `sensitivity_specificity_analysis_R`
 ### Reading time
 The script used to compare the reading times of the two radiologists with and without the assistance
-of the CAD is called `compare_timing_between_readings.py` and is located inside the directory `reading_time`
+of the CAD is called `compare_timing_between_readings.py` and is located inside the directory `reading_time`.
+The files containing the results of the two readings (which include the reading times) are located inside the directory `READINGS` 
 ### Confidence scores
 All the scripts related to the confidence scores are located in the directory `confidence_score`. 
 To script used to create the barplots that display the confidence scores is `d20240916_confidence_scores_barplots.py`.
@@ -42,4 +43,5 @@ If you're using our dataset/model or comparing performances with the ones presen
 
         [1] Di Noto, T., Marie, G., Tourbier, S., Alemán-Gómez, Y., Esteban, O., Saliou, G., ... & Richiardi, J. (2023). Towards automated brain aneurysm detection in TOF-MRA: open data, weak labels, and anatomical knowledge. Neuroinformatics, 21(1), 21-34.
 
-TODO add second
+and
+        TODO: add (med)-arxiv once it's public
