@@ -37,7 +37,7 @@ the directory `READINGS`.
 ### Confidence scores
 All the scripts related to the confidence scores are located in the directory `confidence_score`. 
 To script used to create the barplots that display the confidence scores is `d20240916_confidence_scores_barplots.py`.
-To script used to run the XYZ test to compare the distributions of confidence scores is ``
+To script used to run the XYZ test to compare the distributions of confidence scores is `TO_ADD`
 
 
 ## How to cite
